@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(node -e \"console.log\\(require\\('crypto'\\).randomBytes\\(32\\).toString\\('base64'\\)\\)\")",
+      "PowerShell(Get-NetTCPConnection *)",
+      "PowerShell(Remove-Item *)",
+      "Bash(curl *)",
+      "WebFetch(domain:localhost)",
+      "PowerShell(Get-Content \"C:\\\\Users\\\\elgato\\\\Desktop\\\\pawmani\\\\.next\\\\server\\\\app\\\\\\(main\\)\\\\messages\\\\page.js\" -ErrorAction SilentlyContinue | Select-Object -First 3; if \\(-not $?\\) { \"File not found - checking build\" })",
+      "Bash(npx prisma *)",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(git -C \"C:\\\\Users\\\\elgato\\\\Desktop\\\\pawmani\" init)",
+      "Bash(git -C \"C:\\\\Users\\\\elgato\\\\Desktop\\\\pawmani\" add -A)",
+      "Bash(git -C \"C:\\\\Users\\\\elgato\\\\Desktop\\\\pawmani\" log --oneline -5)"
+    ]
+  }
+}
