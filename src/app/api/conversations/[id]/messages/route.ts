@@ -4,7 +4,7 @@ import { db } from "@/lib/db";
 import { rateLimit, getIp } from "@/lib/rate-limit";
 
 export async function POST(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-  if (!rateLimit(`messages:${getIp(req)}`, 60, 60 * 60 * 1000)) {
+  if (!await rateLimit(`messages:${getIp(req)}`, 60, 60 * 60 * 1000)) {
     return NextResponse.json({ error: "Too many messages" }, { status: 429 });
   }
 

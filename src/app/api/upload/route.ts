@@ -4,7 +4,7 @@ import { supabaseAdmin } from "@/lib/supabase";
 import { rateLimit, getIp } from "@/lib/rate-limit";
 
 export async function POST(req: NextRequest) {
-  if (!rateLimit(`upload:${getIp(req)}`, 20, 60 * 60 * 1000)) {
+  if (!await rateLimit(`upload:${getIp(req)}`, 20, 60 * 60 * 1000)) {
     return NextResponse.json({ error: "Too many uploads" }, { status: 429 });
   }
 

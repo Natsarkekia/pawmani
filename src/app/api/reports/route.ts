@@ -4,7 +4,7 @@ import { db } from "@/lib/db";
 import { rateLimit, getIp } from "@/lib/rate-limit";
 
 export async function POST(req: NextRequest) {
-  if (!rateLimit(`reports:${getIp(req)}`, 5, 60 * 60 * 1000)) {
+  if (!await rateLimit(`reports:${getIp(req)}`, 5, 60 * 60 * 1000)) {
     return NextResponse.json({ error: "Too many reports" }, { status: 429 });
   }
 

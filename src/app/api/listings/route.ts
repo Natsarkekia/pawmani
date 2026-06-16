@@ -4,7 +4,7 @@ import { db } from "@/lib/db";
 import { rateLimit, getIp } from "@/lib/rate-limit";
 
 export async function POST(req: NextRequest) {
-  if (!rateLimit(`listings:${getIp(req)}`, 10, 60 * 60 * 1000)) {
+  if (!await rateLimit(`listings:${getIp(req)}`, 10, 60 * 60 * 1000)) {
     return NextResponse.json({ error: "Too many requests" }, { status: 429 });
   }
 

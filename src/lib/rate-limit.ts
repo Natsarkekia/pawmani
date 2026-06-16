@@ -1,23 +1,29 @@
-// In-memory rate limiter. Works on single-server and dev.
-// For Vercel production, replace with Upstash Redis before launch.
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
 
-type Entry = { count: number; reset: number };
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL!,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+});
 
-const store = new Map<string, Entry>();
+const limiters: Record<string, Ratelimit> = {};
 
-export function rateLimit(key: string, limit: number, windowMs: number): boolean {
-  const now = Date.now();
-  const entry = store.get(key);
-
-  if (!entry || now > entry.reset) {
-    store.set(key, { count: 1, reset: now + windowMs });
-    return true;
+function getLimiter(limit: number, windowMs: number): Ratelimit {
+  const key = `${limit}:${windowMs}`;
+  if (!limiters[key]) {
+    limiters[key] = new Ratelimit({
+      redis,
+      limiter: Ratelimit.slidingWindow(limit, `${windowMs}ms`),
+      analytics: false,
+    });
   }
+  return limiters[key];
+}
 
-  if (entry.count >= limit) return false;
-
-  entry.count++;
-  return true;
+export async function rateLimit(key: string, limit: number, windowMs: number): Promise<boolean> {
+  const limiter = getLimiter(limit, windowMs);
+  const { success } = await limiter.limit(key);
+  return success;
 }
 
 export function getIp(req: Request): string {
