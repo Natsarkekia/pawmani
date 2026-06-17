@@ -49,10 +49,10 @@ export function Navbar() {
             {/* Language toggle */}
             <button
               onClick={toggle}
-              className="text-xs font-semibold text-gray-500 dark:text-gray-400 hover:text-blue-700 dark:hover:text-blue-400 transition-colors cursor-pointer tracking-wide"
+              className="text-xl leading-none hover:opacity-70 transition-opacity cursor-pointer"
               aria-label="Switch language"
             >
-              {locale === "ka" ? "EN" : "KA"}
+              <span className={`fi ${locale === "ka" ? "fi-gb" : "fi-ge"} text-base`} />
             </button>
 
             <ThemeToggle />
@@ -139,8 +139,8 @@ export function Navbar() {
               <span className="text-sm text-gray-500 dark:text-gray-400">{t("nav_theme")}</span>
               <ThemeToggle />
             </div>
-            <button onClick={toggle} className="text-xs font-semibold text-gray-500 dark:text-gray-400 hover:text-blue-700 transition-colors cursor-pointer tracking-wide">
-              {locale === "ka" ? "EN" : "KA"}
+            <button onClick={toggle} className="text-xl leading-none hover:opacity-70 transition-opacity cursor-pointer">
+              <span className={`fi ${locale === "ka" ? "fi-gb" : "fi-ge"} text-base`} />
             </button>
           </div>
 

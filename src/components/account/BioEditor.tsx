@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { FileText, Check, Pencil } from "lucide-react";
+import { useLang } from "@/lib/i18n/client";
 
 export function BioEditor({ initial }: { initial: string | null }) {
+  const { t } = useLang();
   const [editing, setEditing] = useState(false);
   const [value, setValue] = useState(initial ?? "");
   const [saving, setSaving] = useState(false);
@@ -43,7 +45,7 @@ export function BioEditor({ initial }: { initial: string | null }) {
       ) : (
         <div className="flex items-start gap-1 flex-1">
           <span className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
-            {value || "No bio yet"}
+            {value || t("bio_empty")}
           </span>
           <button
             onClick={() => setEditing(true)}

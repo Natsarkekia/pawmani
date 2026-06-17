@@ -71,25 +71,11 @@ export default async function MessagesPage() {
                 href={`/messages/${conv.id}`}
                 className="flex items-center gap-4 p-4 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-blue-200 dark:hover:border-blue-700 hover:bg-blue-50/30 dark:hover:bg-blue-900/10 transition-all bg-white dark:bg-gray-900"
               >
-                <div className="w-14 h-14 rounded-xl overflow-hidden bg-gray-100 shrink-0">
-                  {conv.listing.images[0] ? (
-                    <Image
-                      src={conv.listing.images[0].url}
-                      alt={conv.listing.title}
-                      width={56}
-                      height={56}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center">
-                      <PawPrint className="w-5 h-5 text-gray-300" />
-                    </div>
-                  )}
-                </div>
+                <Avatar src={otherParty.image} name={otherParty.name} size={56} className="rounded-xl shrink-0" />
 
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-2">
-                    <p className="text-sm font-semibold text-gray-900 dark:text-white truncate">{conv.listing.title}</p>
+                    <p className="text-base font-semibold text-gray-900 dark:text-white truncate">{otherParty.name}</p>
                     {lastMsg && (
                       <span className="text-xs text-gray-400 shrink-0">
                         {new Date(lastMsg.createdAt).toLocaleDateString()}
@@ -97,8 +83,18 @@ export default async function MessagesPage() {
                     )}
                   </div>
                   <div className="flex items-center gap-1.5 mt-0.5">
-                    <Avatar src={otherParty.image} name={otherParty.name} size={16} className="rounded-full shrink-0" />
-                    <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{otherParty.name}</p>
+                    {conv.listing.images[0] ? (
+                      <Image
+                        src={conv.listing.images[0].url}
+                        alt={conv.listing.title}
+                        width={16}
+                        height={16}
+                        className="w-4 h-4 rounded object-cover shrink-0"
+                      />
+                    ) : (
+                      <PawPrint className="w-3.5 h-3.5 text-gray-300 shrink-0" />
+                    )}
+                    <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{conv.listing.title}</p>
                   </div>
                   {lastMsg && (
                     <p className={`text-sm mt-0.5 truncate ${unread > 0 ? "font-semibold text-gray-900 dark:text-white" : "text-gray-500 dark:text-gray-400"}`}>

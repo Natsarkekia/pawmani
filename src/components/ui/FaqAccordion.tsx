@@ -16,7 +16,7 @@ export function FaqAccordion({ items }: Props) {
         <div key={i}>
           <button
             onClick={() => setOpen(open === i ? null : i)}
-            className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+            className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors cursor-pointer"
           >
             <span className="font-medium text-gray-900 dark:text-white">{item.q}</span>
             <ChevronDown
