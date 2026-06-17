@@ -5,7 +5,6 @@ import { useSearchParams } from "next/navigation";
 import { PawPrint } from "lucide-react";
 import Link from "next/link";
 import { Suspense } from "react";
-import type { Metadata } from "next";
 
 function LoginCard() {
   const searchParams = useSearchParams();

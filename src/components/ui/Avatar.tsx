@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 const PALETTE = [
@@ -29,11 +30,12 @@ export function Avatar({ src, name, size, className }: Props) {
 
   if (src) {
     return (
-      <img
+      <Image
         src={src}
         alt={name ?? "User"}
+        width={size}
+        height={size}
         className={cn("object-cover block", className)}
-        style={{ width: size, height: size }}
       />
     );
   }

@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { unstable_cache } from "next/cache";
 import { Star, ShieldCheck, ChevronRight, Check } from "lucide-react";
 import { db } from "@/lib/db";

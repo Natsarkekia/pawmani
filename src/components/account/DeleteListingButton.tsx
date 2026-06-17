@@ -31,7 +31,7 @@ export function DeleteListingButton({ id }: { id: string }) {
           <div className="absolute inset-0 bg-black/40" onClick={() => !loading && setOpen(false)} />
           <div className="relative bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-800 p-6 w-full max-w-sm">
             <h2 className="text-base font-semibold text-gray-900 dark:text-white mb-1">Delete listing?</h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">This can't be undone. The listing and all its photos will be permanently removed.</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">This can&apos;t be undone. The listing and all its photos will be permanently removed.</p>
             <div className="flex gap-3">
               <button
                 onClick={() => setOpen(false)}

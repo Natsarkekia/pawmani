@@ -54,6 +54,7 @@ export default function ConversationPage({ params }: { params: Promise<{ id: str
     } else {
       bottomRef.current?.scrollIntoView({ behavior: "smooth" });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data?.messages.length]);
 
   if (status === "loading" || loading) {
