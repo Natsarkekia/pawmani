@@ -123,6 +123,14 @@ export const en = {
   age_year: "year",
   age_years: "years",
 
+  // Search bar
+  search_placeholder: "Search by breed, species, or location...",
+  search_button: "Search",
+
+  // Messages
+  msg_you: "You: ",
+  msg_writePlaceholder: "Write a message...",
+
   // Contact modal
   contact_breeder: "Contact Breeder",
   contact_phone: "Phone",
@@ -269,7 +277,7 @@ export type TranslationKey = keyof typeof en;
 export const ka: Record<TranslationKey, string> = {
   // Nav
   nav_home: "მთავარი",
-  nav_findMatch: "იპოვე წყვილი",
+  nav_findMatch: "იპოვე პარტნიორი",
   nav_marketplace: "შეიძინე",
   nav_about: "ჩვენ შესახებ",
   nav_faq: "კითხვები",
@@ -335,8 +343,8 @@ export const ka: Record<TranslationKey, string> = {
   browse_birds: "ფრინველები",
   browse_rabbits: "კურდღლები",
   browse_exotic: "ეგზოტიკური",
-  browse_male: "მამრი",
-  browse_female: "მდედრი",
+  browse_male: "ხვადი",
+  browse_female: "ძუ",
   browse_fullyVaccinated: "სრულად ვაქცინირებული",
   browse_partial: "ნაწილობრივ",
   browse_none: "არ არის",
@@ -377,8 +385,8 @@ export const ka: Record<TranslationKey, string> = {
   pet_notVaccinated: "ვაქცინაციის გარეშე",
 
   // Pet card badges
-  card_male: "მამრი",
-  card_female: "მდედრი",
+  card_male: "ხვადი",
+  card_female: "ძუ",
   card_breeding: "შესაჯვარებელი",
 
   // Age units
@@ -388,6 +396,14 @@ export const ka: Record<TranslationKey, string> = {
   age_months: "თვე",
   age_year: "წელი",
   age_years: "წელი",
+
+  // Search bar
+  search_placeholder: "მოძებნე სახეობის, ჯიშის ან ადგილმდებარეობის მიხედვით",
+  search_button: "ძებნა",
+
+  // Messages
+  msg_you: "თქვენ: ",
+  msg_writePlaceholder: "დაწერე მესიჯი...",
 
   // Contact modal
   contact_breeder: "კონტაქტი",
@@ -435,8 +451,8 @@ export const ka: Record<TranslationKey, string> = {
   form_months: "თვე",
   form_years: "წელი",
   form_gender: "სქესი",
-  form_male: "მამრი",
-  form_female: "მდედრი",
+  form_male: "ხვადი",
+  form_female: "ძუ",
   form_purpose: "მიზანი",
   form_forSale: "გაყიდვაში",
   form_forBreeding: "სანაშენედ",

@@ -5,12 +5,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { MessageSquare, PawPrint } from "lucide-react";
 import { Avatar } from "@/components/ui/Avatar";
+import { getT } from "@/lib/i18n/server";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Messages" };
 export const dynamic = "force-dynamic";
 
 export default async function MessagesPage() {
+  const { t } = await getT();
   const session = await auth();
   if (!session?.user?.id) redirect("/login?callbackUrl=/messages");
 
@@ -45,7 +47,7 @@ export default async function MessagesPage() {
 
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Messages</h1>
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t("nav_messages")}</h1>
 
       {conversations.length === 0 ? (
         <div className="text-center py-20 text-gray-400">
@@ -100,7 +102,7 @@ export default async function MessagesPage() {
                   </div>
                   {lastMsg && (
                     <p className={`text-sm mt-0.5 truncate ${unread > 0 ? "font-semibold text-gray-900 dark:text-white" : "text-gray-500 dark:text-gray-400"}`}>
-                      {lastMsg.senderId === session.user.id ? "You: " : ""}{lastMsg.content}
+                      {lastMsg.senderId === session.user.id ? t("msg_you") : ""}{lastMsg.content}
                     </p>
                   )}
                 </div>

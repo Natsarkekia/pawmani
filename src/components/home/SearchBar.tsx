@@ -3,9 +3,11 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Search } from "lucide-react";
+import { useLang } from "@/lib/i18n/client";
 
 export function SearchBar() {
   const router = useRouter();
+  const { t } = useLang();
   const [query, setQuery] = useState("");
 
   const handleSearch = () => {
@@ -22,7 +24,7 @@ export function SearchBar() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-          placeholder="Search by breed, species, or location..."
+          placeholder={t("search_placeholder")}
           className="flex-1 text-gray-900 placeholder-gray-400 outline-none text-sm bg-transparent"
         />
       </div>
@@ -30,7 +32,7 @@ export function SearchBar() {
         onClick={handleSearch}
         className="bg-white text-blue-800 font-semibold px-6 py-3 rounded-xl hover:bg-blue-50 transition-colors text-sm text-center shadow-lg"
       >
-        Search
+        {t("search_button")}
       </button>
     </div>
   );

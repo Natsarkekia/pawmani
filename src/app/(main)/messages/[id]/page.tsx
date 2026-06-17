@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Send, Loader2 } from "lucide-react";
 import { Avatar } from "@/components/ui/Avatar";
+import { useLang } from "@/lib/i18n/client";
 
 type Message = {
   id: string;
@@ -24,6 +25,7 @@ type ConversationData = {
 export default function ConversationPage({ params }: { params: Promise<{ id: string }> }) {
   const { id: convId } = use(params);
   const { data: session, status } = useSession();
+  const { t } = useLang();
   const router = useRouter();
   const [data, setData] = useState<ConversationData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -145,7 +147,7 @@ export default function ConversationPage({ params }: { params: Promise<{ id: str
               handleSend();
             }
           }}
-          placeholder="Write a message..."
+          placeholder={t("msg_writePlaceholder")}
           rows={1}
           maxLength={1000}
           className="flex-1 resize-none border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-2.5 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-blue-400"
