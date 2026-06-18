@@ -67,3 +67,83 @@ export const GEORGIAN_CITIES = [
 ] as const;
 
 export type GeorgianCity = (typeof GEORGIAN_CITIES)[number];
+
+const CITY_EN: Record<string, string> = {
+  "თბილისი": "Tbilisi",
+  "ქუთაისი": "Kutaisi",
+  "ბათუმი": "Batumi",
+  "რუსთავი": "Rustavi",
+  "გორი": "Gori",
+  "ზუგდიდი": "Zugdidi",
+  "ფოთი": "Poti",
+  "ხაშური": "Khashuri",
+  "სამტრედია": "Samtredia",
+  "სენაკი": "Senaki",
+  "ზესტაფონი": "Zestaponi",
+  "თერჯოლა": "Terjola",
+  "მარნეული": "Marneuli",
+  "თელავი": "Telavi",
+  "ახალციხე": "Akhaltsikhe",
+  "ოზურგეთი": "Ozurgeti",
+  "კასპი": "Kaspi",
+  "ჭიათურა": "Chiatura",
+  "წყალტუბო": "Tskaltubo",
+  "საგარეჯო": "Sagarejo",
+  "გარდაბანი": "Gardabani",
+  "ბორჯომი": "Borjomi",
+  "ტყიბული": "Tkibuli",
+  "ხონი": "Khoni",
+  "ახალქალაქი": "Akhalkalaki",
+  "მცხეთა": "Mtskheta",
+  "ქობულეთი": "Kobuleti",
+  "გურჯაანი": "Gurjaani",
+  "ბოლნისი": "Bolnisi",
+  "ახმეტა": "Akhmeta",
+  "ყვარელი": "Kvareli",
+  "წნორი": "Tsnori",
+  "ლაგოდეხი": "Lagodekhi",
+  "დედოფლისწყარო": "Dedoplistskaro",
+  "ნინოწმინდა": "Ninotsminda",
+  "ვალე": "Vale",
+  "აბაშა": "Abasha",
+  "მარტვილი": "Martvili",
+  "ვანი": "Vani",
+  "ბაღდათი": "Baghdati",
+  "ლანჩხუთი": "Lanchkhuti",
+  "ნოქალაქევი": "Nokalakevi",
+  "ამბროლაური": "Ambrolauri",
+  "ონი": "Oni",
+  "დუშეთი": "Dusheti",
+  "სტეფანწმინდა": "Stepantsminda",
+  "თიანეთი": "Tianeti",
+  "საჩხერე": "Sachkhere",
+  "ტყვარჩელი": "Tkvarcheli",
+  "ოჩამჩირე": "Ochamchire",
+  "გალი": "Gali",
+  "გუდაუთა": "Gudauta",
+  "გაგრა": "Gagra",
+  "სოხუმი": "Sokhumi",
+  "ახალი ათონი": "New Athos",
+  "პიცუნდა": "Pitsunda",
+  "გულრიფში": "Gulripshi",
+  "დრანდა": "Dranda",
+  "განთიადი": "Gantiadi",
+  "წალენჯიხა": "Tsalenjikha",
+  "ჯვარი": "Jvari",
+  "ჩხოროწყუ": "Chkhorotsqu",
+  "მესტია": "Mestia",
+  "ლენტეხი": "Lentekhi",
+  "შუახევი": "Shuakhevi",
+};
+
+export function getCityName(city: string, locale: "en" | "ka"): string {
+  if (locale === "ka") return city;
+  return CITY_EN[city] ?? city;
+}
+
+// Returns the Georgian city name for a given English search term (case-insensitive).
+// Used to translate English search queries back to what's stored in the DB.
+export function findGeorgianCity(query: string): string | undefined {
+  const lower = query.toLowerCase();
+  return GEORGIAN_CITIES.find((ka) => CITY_EN[ka]?.toLowerCase() === lower);
+}

@@ -11,6 +11,7 @@ import { ReviewForm } from "@/components/breeders/ReviewForm";
 import { Avatar } from "@/components/ui/Avatar";
 import { ReportButton } from "@/components/pets/ReportModal";
 import { getT } from "@/lib/i18n/server";
+import { getCityName } from "@/lib/cities";
 import type { Metadata } from "next";
 
 const getBreeder = unstable_cache(
@@ -109,7 +110,7 @@ export default async function BreederProfilePage({
               <div className="flex flex-wrap items-center gap-4 mt-2 text-blue-200 text-sm">
                 <span className="flex items-center gap-1.5">
                   <MapPin className="w-4 h-4" />
-                  {breeder.city}
+                  {getCityName(breeder.city, locale)}
                 </span>
                 <span className="flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4" />
@@ -317,7 +318,7 @@ export default async function BreederProfilePage({
               <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-6 shadow-sm space-y-3 text-sm text-gray-600 dark:text-gray-300">
                 <div className="flex items-center gap-2">
                   <MapPin className="w-4 h-4 text-blue-600 shrink-0" />
-                  {breeder.city}
+                  {getCityName(breeder.city, locale)}
                 </div>
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-blue-600 shrink-0" />

@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Upload, X, Loader2 } from "lucide-react";
 import imageCompression from "browser-image-compression";
 import { cn } from "@/lib/utils";
-import { GEORGIAN_CITIES } from "@/lib/cities";
+import { GEORGIAN_CITIES, getCityName } from "@/lib/cities";
 import { useLang } from "@/lib/i18n/client";
 import type { TranslationKey } from "@/lib/i18n";
 
@@ -50,7 +50,7 @@ export function EditListingForm({ listing }: { listing: InitialListing }) {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
-  const { t } = useLang();
+  const { t, locale } = useLang();
 
   const set = (key: keyof typeof form, value: string) =>
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -248,7 +248,7 @@ export function EditListingForm({ listing }: { listing: InitialListing }) {
           className="w-full max-w-xs px-3.5 py-2.5 border border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:outline-none focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
           <option value="" disabled>{t("form_selectCity")}</option>
           {GEORGIAN_CITIES.map((c) => (
-            <option key={c} value={c}>{c}</option>
+            <option key={c} value={c}>{getCityName(c, locale)}</option>
           ))}
         </select>
       </div>

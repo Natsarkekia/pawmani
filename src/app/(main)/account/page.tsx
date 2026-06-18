@@ -112,7 +112,7 @@ export default async function AccountPage() {
                       )}
                     </div>
                   </Link>
-                  <Link href={`/pets/${listing.id}`} className="flex-1 min-w-0">
+                  <Link href={`/pets/${listing.id}`} className="flex-1 min-w-0 hidden sm:block">
                     <div className="flex items-center gap-2">
                       <p className="font-medium text-gray-900 dark:text-white truncate">{listing.title}</p>
                       {listing.status === "ARCHIVED" && (

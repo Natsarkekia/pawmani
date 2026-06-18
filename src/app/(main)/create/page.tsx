@@ -7,7 +7,7 @@ import Image from "next/image";
 import { Upload, X, PawPrint, Loader2 } from "lucide-react";
 import imageCompression from "browser-image-compression";
 import { cn, isValidGeorgianPhone } from "@/lib/utils";
-import { GEORGIAN_CITIES } from "@/lib/cities";
+import { GEORGIAN_CITIES, getCityName } from "@/lib/cities";
 import { useLang } from "@/lib/i18n/client";
 import type { TranslationKey } from "@/lib/i18n";
 
@@ -36,7 +36,7 @@ const INITIAL: FormState = {
 
 export default function CreateListingPage() {
   const { data: session, status } = useSession();
-  const { t } = useLang();
+  const { t, locale } = useLang();
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -365,7 +365,7 @@ export default function CreateListingPage() {
           >
             <option value="" disabled>{t("form_selectCity")}</option>
             {GEORGIAN_CITIES.map((c) => (
-              <option key={c} value={c}>{c}</option>
+              <option key={c} value={c}>{getCityName(c, locale)}</option>
             ))}
           </select>
         </div>

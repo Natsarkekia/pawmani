@@ -8,6 +8,8 @@ import { MobileFilterDrawer } from "@/components/browse/MobileFilterDrawer";
 import { SortSelect } from "@/components/browse/SortSelect";
 import { PawPrint } from "lucide-react";
 import { getT } from "@/lib/i18n/server";
+import { findGeorgianCity } from "@/lib/cities";
+import { BrowseSearchBar } from "@/components/browse/BrowseSearchBar";
 import type { Prisma, Species, Gender, VaccinationStatus, ListingPurpose } from "@prisma/client";
 import type { Metadata } from "next";
 
@@ -48,10 +50,13 @@ async function _getListings(params: Awaited<SearchParams>) {
   if (params.purpose) where.purpose = params.purpose as ListingPurpose;
   if (params.city) where.city = params.city;
   if (params.search) {
+    const georgianCity = findGeorgianCity(params.search);
     where.OR = [
       { title: { contains: params.search, mode: "insensitive" } },
       { breed: { contains: params.search, mode: "insensitive" } },
       { description: { contains: params.search, mode: "insensitive" } },
+      { city: { contains: params.search, mode: "insensitive" } },
+      ...(georgianCity ? [{ city: georgianCity }] : []),
     ];
   }
 
@@ -146,8 +151,16 @@ export default async function BrowsePage({ searchParams }: { searchParams: Searc
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Page header */}
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{pageTitle}</h1>
-        <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">{total} {availableLabel}</p>
+        {params.search ? (
+          <>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{t("browse_resultsFor")}</p>
+            <Suspense>
+              <BrowseSearchBar initialValue={params.search} />
+            </Suspense>
+          </>
+        ) : (
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{pageTitle}</h1>
+        )}
       </div>
 
       <div className="flex gap-8">

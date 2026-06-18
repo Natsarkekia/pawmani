@@ -4,7 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { GEORGIAN_CITIES } from "@/lib/cities";
+import { GEORGIAN_CITIES, getCityName } from "@/lib/cities";
 import { useLang } from "@/lib/i18n/client";
 
 const inactiveChip = "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-blue-300";
@@ -15,7 +15,7 @@ type Props = { onClose?: () => void };
 export function FilterPanel({ onClose }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { t } = useLang();
+  const { t, locale } = useLang();
 
   const get = (key: string) => searchParams.get(key) ?? "";
 
@@ -131,7 +131,7 @@ export function FilterPanel({ onClose }: Props) {
         <select value={get("city")} onChange={(e) => set("city", e.target.value)} className="w-full px-3 py-2 text-sm border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white cursor-pointer">
           <option value="">{t("browse_allCities")}</option>
           {GEORGIAN_CITIES.map((c) => (
-            <option key={c} value={c}>{c}</option>
+            <option key={c} value={c}>{getCityName(c, locale)}</option>
           ))}
         </select>
       </div>

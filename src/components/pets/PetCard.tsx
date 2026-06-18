@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MapPin } from "lucide-react";
 import { formatPrice } from "@/lib/utils";
+import { getCityName } from "@/lib/cities";
 import { FavoriteButton } from "./FavoriteButton";
 import { useLang } from "@/lib/i18n/client";
 import type { Locale } from "@/lib/i18n";
@@ -86,7 +87,7 @@ export function PetCard({
         </div>
         <div className="flex items-center gap-1 mt-3 text-xs text-gray-400 dark:text-gray-500">
           <MapPin className="w-3.5 h-3.5" />
-          <span>{city}</span>
+          <span>{getCityName(city, locale)}</span>
         </div>
       </Link>
     </div>

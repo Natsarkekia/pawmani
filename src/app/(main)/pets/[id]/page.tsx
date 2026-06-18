@@ -8,6 +8,7 @@ import { ContactButton } from "@/components/pets/ContactModal";
 import { ReportButton } from "@/components/pets/ReportModal";
 import { PetCard } from "@/components/pets/PetCard";
 import { formatPrice } from "@/lib/utils";
+import { getCityName } from "@/lib/cities";
 import { Avatar } from "@/components/ui/Avatar";
 import { getT } from "@/lib/i18n/server";
 import type { Locale, TranslationKey } from "@/lib/i18n";
@@ -100,7 +101,7 @@ export default async function PetDetailPage({ params }: { params: Promise<{ id: 
     { label: t("pet_age"), value: formatAgeLocale(listing.ageValue, listing.ageUnit, locale, t) },
     { label: t("pet_gender"), value: GENDER_LABEL[listing.gender] ?? listing.gender },
     { label: t("pet_vaccination"), value: vax.label },
-    ...(listing.city ? [{ label: t("pet_location"), value: listing.city }] : []),
+    ...(listing.city ? [{ label: t("pet_location"), value: getCityName(listing.city, locale) }] : []),
   ];
 
   const activeCount = listing.breeder.listings.length;
