@@ -496,7 +496,7 @@ export const ka: Record<TranslationKey, string> = {
   browse_max: "მაქს",
   browse_vaccination: "ვაქცინაცია",
   browse_all: "ყველა",
-  browse_any: "ნებისმიერი",
+  browse_any: "ყველა",
   browse_forSale: "გასხვისება",
   browse_forBreeding: "შეჯვარება",
   browse_dogs: "ძაღლები",
