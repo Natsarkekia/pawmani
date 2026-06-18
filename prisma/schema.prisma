@@ -204,6 +204,9 @@ enum Species {
   CAT
   BIRD
   RABBIT
+  FISH
+  RODENT
+  REPTILE
   EXOTIC
 }
 

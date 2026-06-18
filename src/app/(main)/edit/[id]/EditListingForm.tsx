@@ -10,7 +10,7 @@ import { GEORGIAN_CITIES, getCityName } from "@/lib/cities";
 import { useLang } from "@/lib/i18n/client";
 import type { TranslationKey } from "@/lib/i18n";
 
-const SPECIES = ["DOG", "CAT", "BIRD", "RABBIT", "EXOTIC"] as const;
+const SPECIES = ["DOG", "CAT", "BIRD", "RABBIT", "FISH", "RODENT", "REPTILE", "EXOTIC"] as const;
 
 type InitialListing = {
   id: string;

@@ -86,7 +86,8 @@ export default async function PetDetailPage({ params }: { params: Promise<{ id: 
   };
 
   const SPECIES_LABEL: Record<string, string> = {
-    DOG: t("browse_dogs"), CAT: t("browse_cats"), BIRD: t("browse_birds"), RABBIT: t("browse_rabbits"), EXOTIC: t("browse_exotic"),
+    DOG: t("browse_dogs"), CAT: t("browse_cats"), BIRD: t("browse_birds"), RABBIT: t("browse_rabbits"),
+    FISH: t("browse_fish"), RODENT: t("browse_rodents"), REPTILE: t("browse_reptiles"), EXOTIC: t("browse_exotic"),
   };
 
   const GENDER_LABEL: Record<string, string> = {

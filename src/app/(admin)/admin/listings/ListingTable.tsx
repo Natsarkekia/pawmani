@@ -23,6 +23,9 @@ const speciesBadge: Record<string, string> = {
   CAT: "bg-orange-900/40 text-orange-400",
   BIRD: "bg-sky-900/40 text-sky-400",
   RABBIT: "bg-pink-900/40 text-pink-400",
+  FISH: "bg-blue-900/40 text-blue-400",
+  RODENT: "bg-yellow-900/40 text-yellow-400",
+  REPTILE: "bg-lime-900/40 text-lime-400",
   EXOTIC: "bg-green-900/40 text-green-400",
 };
 

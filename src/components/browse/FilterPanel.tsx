@@ -41,6 +41,9 @@ export function FilterPanel({ onClose }: Props) {
     { label: t("browse_cats"), value: "CAT" },
     { label: t("browse_birds"), value: "BIRD" },
     { label: t("browse_rabbits"), value: "RABBIT" },
+    { label: t("browse_fish"), value: "FISH" },
+    { label: t("browse_rodents"), value: "RODENT" },
+    { label: t("browse_reptiles"), value: "REPTILE" },
     { label: t("browse_exotic"), value: "EXOTIC" },
   ];
 

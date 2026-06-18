@@ -42,6 +42,9 @@ export default async function HomePage() {
     { label: t("home_cats"), value: "CAT", emoji: "🐈", color: "bg-purple-50 dark:bg-purple-900/20 border-purple-200 dark:border-purple-800 hover:border-purple-400" },
     { label: t("home_birds"), value: "BIRD", emoji: "🦜", color: "bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 hover:border-green-400" },
     { label: t("home_rabbits"), value: "RABBIT", emoji: "🐇", color: "bg-pink-50 dark:bg-pink-900/20 border-pink-200 dark:border-pink-800 hover:border-pink-400" },
+    { label: t("home_fish"), value: "FISH", emoji: "🐟", color: "bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 hover:border-blue-400" },
+    { label: t("home_rodents"), value: "RODENT", emoji: "🐹", color: "bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-800 hover:border-orange-400" },
+    { label: t("home_reptiles"), value: "REPTILE", emoji: "🐍", color: "bg-lime-50 dark:bg-lime-900/20 border-lime-200 dark:border-lime-800 hover:border-lime-400" },
     { label: t("home_exotic"), value: "EXOTIC", emoji: "🦎", color: "bg-teal-50 dark:bg-teal-900/20 border-teal-200 dark:border-teal-800 hover:border-teal-400" },
   ];
 
@@ -97,7 +100,7 @@ export default async function HomePage() {
             {t("home_viewAll")} <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {SPECIES.map((s) => (
             <Link key={s.value} href={`/browse?species=${s.value}`} className={`flex flex-col items-center gap-3 p-6 rounded-2xl border-2 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md ${s.color}`}>
               <span className="text-4xl">{s.emoji}</span>
