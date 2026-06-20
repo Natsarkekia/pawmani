@@ -15,8 +15,15 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [mobileUserOpen, setMobileUserOpen] = useState(false);
+  const [navHidden, setNavHidden] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const mobileUserRef = useRef<HTMLDivElement>(null);
+  const lastScrollY = useRef(0);
+  const mobileOpenRef = useRef(false);
+
+  useEffect(() => {
+    mobileOpenRef.current = mobileOpen;
+  }, [mobileOpen]);
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
@@ -31,8 +38,23 @@ export function Navbar() {
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
+  useEffect(() => {
+    function handleScroll() {
+      if (mobileOpenRef.current) return;
+      const currentY = window.scrollY;
+      if (currentY > lastScrollY.current && currentY > 60) {
+        setNavHidden(true);
+      } else {
+        setNavHidden(false);
+      }
+      lastScrollY.current = currentY;
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800 shadow-sm">
+    <header className={`sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800 shadow-sm transition-transform duration-300 md:translate-y-0 ${navHidden ? "-translate-y-full" : "translate-y-0"}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Desktop layout */}
@@ -45,13 +67,14 @@ export function Navbar() {
           <nav className="flex items-center gap-6 text-sm font-medium text-gray-600 dark:text-gray-300">
             <Link href="/browse?purpose=BREEDING" className="hover:text-blue-700 transition-colors">{t("nav_findMatch")}</Link>
             <Link href="/browse?purpose=SALE" className="hover:text-blue-700 transition-colors">{t("nav_marketplace")}</Link>
+            <Link href="/browse?purpose=ADOPT" className="hover:text-blue-700 transition-colors">{t("nav_adopt")}</Link>
             <Link href="/about" className="hover:text-blue-700 transition-colors">{t("nav_about")}</Link>
             <Link href="/faq" className="hover:text-blue-700 transition-colors">{t("nav_faq")}</Link>
           </nav>
 
           <div className="flex items-center gap-3">
-            <button onClick={toggle} className="text-xl leading-none hover:opacity-70 transition-opacity cursor-pointer" aria-label="Switch language">
-              <span className={`fi ${locale === "ka" ? "fi-gb" : "fi-ge"} text-base`} />
+            <button onClick={toggle} className="flex items-center justify-center w-7 h-7 hover:opacity-70 transition-opacity cursor-pointer" aria-label="Switch language">
+              <span className={`fi ${locale === "ka" ? "fi-gb" : "fi-ge"}`} style={{ fontSize: "1.1rem", display: "block" }} />
             </button>
             <ThemeToggle />
 
@@ -138,6 +161,7 @@ export function Navbar() {
         <div className="md:hidden border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 px-4 py-4 space-y-1">
           <Link href="/browse?purpose=BREEDING" className="block text-sm font-medium text-gray-700 dark:text-gray-300 py-2.5" onClick={() => setMobileOpen(false)}>{t("nav_findMatch")}</Link>
           <Link href="/browse?purpose=SALE" className="block text-sm font-medium text-gray-700 dark:text-gray-300 py-2.5" onClick={() => setMobileOpen(false)}>{t("nav_marketplace")}</Link>
+          <Link href="/browse?purpose=ADOPT" className="block text-sm font-medium text-gray-700 dark:text-gray-300 py-2.5" onClick={() => setMobileOpen(false)}>{t("nav_adopt")}</Link>
           <Link href="/about" className="block text-sm font-medium text-gray-700 dark:text-gray-300 py-2.5" onClick={() => setMobileOpen(false)}>{t("nav_about")}</Link>
           <Link href="/faq" className="block text-sm font-medium text-gray-700 dark:text-gray-300 py-2.5" onClick={() => setMobileOpen(false)}>{t("nav_faq")}</Link>
 
@@ -146,8 +170,8 @@ export function Navbar() {
               <span className="text-sm text-gray-500 dark:text-gray-400">{t("nav_theme")}</span>
               <ThemeToggle />
             </div>
-            <button onClick={toggle} className="text-xl leading-none hover:opacity-70 transition-opacity cursor-pointer">
-              <span className={`fi ${locale === "ka" ? "fi-gb" : "fi-ge"} text-base`} />
+            <button onClick={toggle} className="flex items-center justify-center w-7 h-7 hover:opacity-70 transition-opacity cursor-pointer">
+              <span className={`fi ${locale === "ka" ? "fi-gb" : "fi-ge"}`} style={{ fontSize: "1.1rem", display: "block" }} />
             </button>
           </div>
 

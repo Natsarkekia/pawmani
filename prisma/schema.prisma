@@ -229,6 +229,7 @@ enum ListingStatus {
 enum ListingPurpose {
   SALE
   BREEDING
+  ADOPT
 }
 
 enum VaccinationStatus {

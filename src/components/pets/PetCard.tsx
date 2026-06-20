@@ -57,7 +57,9 @@ export function PetCard({
     ? formatPrice(price)
     : purpose === "BREEDING"
       ? t("card_breeding")
-      : t("card_negotiable");
+      : purpose === "ADOPT"
+        ? t("card_adopt")
+        : t("card_negotiable");
 
   return (
     <div className="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5">

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Shield, Heart, Star, ArrowRight, PawPrint, Sparkles } from "lucide-react";
+import { Shield, Heart, Star, ArrowRight, PawPrint, Sparkles, Home } from "lucide-react";
 import { unstable_cache } from "next/cache";
 import { db } from "@/lib/db";
 import { auth } from "@/lib/auth";
@@ -61,34 +61,49 @@ export default async function HomePage() {
         <div className="absolute inset-0 opacity-10"
           style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")" }}
         />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 lg:pt-16 pb-8">
           <div className="max-w-3xl">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-center sm:text-left">
               {t("home_heroTitle1")}<br />
               <span className="text-blue-300">{t("home_heroTitle2")}</span>
             </h1>
-            <p className="text-lg text-blue-100 mb-8 max-w-xl">{t("home_heroSubtitle")}</p>
-
-            <div className="flex flex-wrap gap-3 mb-10">
-              <Link href="/browse?purpose=BREEDING" className="inline-flex items-center gap-2 bg-white dark:bg-slate-900 text-blue-800 dark:text-slate-100 font-semibold px-6 py-3 rounded-xl hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors text-sm">
-                <Heart className="w-4 h-4 fill-blue-700 text-blue-700" />
-                {t("home_findMatch")}
-              </Link>
-              <Link href="/browse?purpose=SALE" className="inline-flex items-center gap-2 bg-blue-600 text-white font-semibold px-6 py-3 rounded-xl hover:bg-blue-500 transition-colors text-sm border border-blue-500">
-                {t("home_browseMarketplace")}
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
+            <p className="text-lg text-blue-100 mb-8 max-w-xl text-center sm:text-left">{t("home_heroSubtitle")}</p>
 
             <SearchBar />
           </div>
-        </div>
-      </section>
 
-      {/* Tagline strip */}
-      <section className="bg-blue-700 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <p className="text-center text-xl sm:text-2xl font-bold tracking-tight">{t("home_tagline")}</p>
+          {/* Floating island strip */}
+          <div className="mt-8 bg-white dark:bg-slate-900 border border-blue-100 dark:border-transparent rounded-2xl px-4 py-4">
+            <div className="grid grid-cols-3 divide-x divide-gray-200 dark:divide-slate-700">
+              <Link href="/browse?purpose=BREEDING" className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 px-4 py-2 hover:opacity-80 transition-opacity">
+                <div className="w-9 h-9 rounded-full bg-teal-500/20 flex items-center justify-center shrink-0">
+                  <Heart className="w-4 h-4 text-teal-500 dark:text-teal-400" />
+                </div>
+                <div className="min-w-0 text-center sm:text-left">
+                  <p className="font-semibold text-sm sm:text-base text-gray-900 dark:text-white">{t("home_stripMatchTitle")}</p>
+                  <p className="text-xs sm:text-sm text-gray-500 dark:text-slate-400 truncate hidden sm:block">{t("home_stripMatchDesc")}</p>
+                </div>
+              </Link>
+              <Link href="/browse?purpose=SALE" className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 px-4 py-2 hover:opacity-80 transition-opacity">
+                <div className="w-9 h-9 rounded-full bg-blue-500/20 flex items-center justify-center shrink-0">
+                  <PawPrint className="w-4 h-4 text-blue-500 dark:text-blue-400" />
+                </div>
+                <div className="min-w-0 text-center sm:text-left">
+                  <p className="font-semibold text-sm sm:text-base text-gray-900 dark:text-white">{t("home_stripSaleTitle")}</p>
+                  <p className="text-xs sm:text-sm text-gray-500 dark:text-slate-400 truncate hidden sm:block">{t("home_stripSaleDesc")}</p>
+                </div>
+              </Link>
+              <Link href="/browse?purpose=ADOPT" className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 px-4 py-2 hover:opacity-80 transition-opacity">
+                <div className="w-9 h-9 rounded-full bg-orange-500/20 flex items-center justify-center shrink-0">
+                  <Home className="w-4 h-4 text-orange-500 dark:text-orange-400" />
+                </div>
+                <div className="min-w-0 text-center sm:text-left">
+                  <p className="font-semibold text-sm sm:text-base text-gray-900 dark:text-white">{t("home_stripAdoptTitle")}</p>
+                  <p className="text-xs sm:text-sm text-gray-500 dark:text-slate-400 truncate hidden sm:block">{t("home_stripAdoptDesc")}</p>
+                </div>
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 

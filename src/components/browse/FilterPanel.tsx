@@ -57,6 +57,7 @@ export function FilterPanel({ onClose }: Props) {
     { label: t("browse_all"), value: "" },
     { label: t("browse_forSale"), value: "SALE" },
     { label: t("browse_forBreeding"), value: "BREEDING" },
+    { label: t("browse_forAdopt"), value: "ADOPT" },
   ];
 
   const VACCINATION = [
@@ -91,7 +92,9 @@ export function FilterPanel({ onClose }: Props) {
           {PURPOSES.map((p) => (
             <button key={p.value} onClick={() => set("purpose", p.value)} className={cn("px-3 py-1.5 rounded-full text-sm border transition-all cursor-pointer",
               get("purpose") === p.value
-                ? p.value === "BREEDING" ? "bg-green-600 text-white border-green-600" : activeChip
+                ? p.value === "BREEDING" ? "bg-green-600 text-white border-green-600"
+                  : p.value === "ADOPT" ? "bg-purple-600 text-white border-purple-600"
+                  : activeChip
                 : inactiveChip
             )}>
               {p.label}

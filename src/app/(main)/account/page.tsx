@@ -126,9 +126,11 @@ export default async function AccountPage() {
                         ? formatPrice(listing.price)
                         : listing.purpose === "BREEDING"
                           ? t("card_breeding")
-                          : t("card_negotiable")} ·{" "}
-                      <span className={listing.purpose === "BREEDING" ? "text-green-600" : "text-blue-600"}>
-                        {listing.purpose === "BREEDING" ? t("account_breeding") : t("account_forSale")}
+                          : listing.purpose === "ADOPT"
+                            ? t("card_adopt")
+                            : t("card_negotiable")} ·{" "}
+                      <span className={listing.purpose === "BREEDING" ? "text-green-600" : listing.purpose === "ADOPT" ? "text-purple-600" : "text-blue-600"}>
+                        {listing.purpose === "BREEDING" ? t("account_breeding") : listing.purpose === "ADOPT" ? t("account_forAdopt") : t("account_forSale")}
                       </span>
                     </p>
                   </Link>

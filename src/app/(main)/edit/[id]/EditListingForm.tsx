@@ -103,12 +103,12 @@ export function EditListingForm({ listing }: { listing: InitialListing }) {
     }
   };
 
-  const chip = (active: boolean, green?: boolean) =>
+  const chip = (active: boolean, color?: "green" | "purple") =>
     cn(
       "px-4 py-2 rounded-full text-sm border transition-all cursor-pointer",
       active
-        ? green
-          ? "bg-green-600 text-white border-green-600"
+        ? color === "green" ? "bg-green-600 text-white border-green-600"
+          : color === "purple" ? "bg-purple-600 text-white border-purple-600"
           : "bg-blue-700 text-white border-blue-700"
         : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-blue-300"
     );
@@ -151,9 +151,10 @@ export function EditListingForm({ listing }: { listing: InitialListing }) {
       {/* Purpose */}
       <div>
         <p className="text-sm font-semibold text-gray-900 dark:text-white mb-3">{t("form_purpose")} <span className="text-red-500">*</span></p>
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <button type="button" onClick={() => set("purpose", "SALE")} className={chip(form.purpose === "SALE")}>{t("form_forSale")}</button>
-          <button type="button" onClick={() => set("purpose", "BREEDING")} className={chip(form.purpose === "BREEDING", true)}>{t("form_forBreeding")}</button>
+          <button type="button" onClick={() => set("purpose", "BREEDING")} className={chip(form.purpose === "BREEDING", "green")}>{t("form_forBreeding")}</button>
+          <button type="button" onClick={() => set("purpose", "ADOPT")} className={chip(form.purpose === "ADOPT", "purple")}>{t("form_forAdopt")}</button>
         </div>
       </div>
 

@@ -131,7 +131,9 @@ export default async function PetDetailPage({ params }: { params: Promise<{ id: 
             ? formatPrice(listing.price)
             : listing.purpose === "BREEDING"
               ? t("card_breeding")
-              : t("card_negotiable")}
+              : listing.purpose === "ADOPT"
+                ? t("card_adopt")
+                : t("card_negotiable")}
         </p>
       </div>
 

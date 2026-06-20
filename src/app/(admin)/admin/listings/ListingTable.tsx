@@ -102,7 +102,7 @@ export function ListingTable({ listings: initial }: { listings: Listing[] }) {
                   </span>
                 </td>
                 <td className="px-4 py-3">
-                  <span className={`px-2 py-0.5 rounded text-xs font-medium ${l.purpose === "BREEDING" ? "bg-green-900/40 text-green-400" : "bg-blue-900/40 text-blue-400"}`}>
+                  <span className={`px-2 py-0.5 rounded text-xs font-medium ${l.purpose === "BREEDING" ? "bg-green-900/40 text-green-400" : l.purpose === "ADOPT" ? "bg-purple-900/40 text-purple-400" : "bg-blue-900/40 text-blue-400"}`}>
                     {l.purpose}
                   </span>
                 </td>

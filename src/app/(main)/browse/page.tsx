@@ -144,6 +144,8 @@ export default async function BrowsePage({ searchParams }: { searchParams: Searc
     ? `${t("browse_resultsFor")} "${params.search}"`
     : params.purpose === "BREEDING"
     ? params.species ? `${speciesLabel} ${t("browse_forBreedingLabel")}` : t("browse_breedingMatches")
+    : params.purpose === "ADOPT"
+    ? params.species ? `${speciesLabel} ${t("browse_forAdoptLabel")}` : t("browse_forAdopt")
     : params.species ? `${speciesLabel} ${t("browse_forSaleLabel")}` : t("browse_browseAll");
 
   const availableLabel = total === 1 ? t("browse_available") : t("browse_availablePlural");
