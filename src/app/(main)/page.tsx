@@ -38,14 +38,14 @@ export default async function HomePage() {
   }
 
   const SPECIES = [
-    { label: t("home_dogs"), value: "DOG", emoji: "🐕", color: "bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-800 hover:border-amber-400" },
-    { label: t("home_cats"), value: "CAT", emoji: "🐈", color: "bg-purple-50 dark:bg-purple-900/20 border-purple-200 dark:border-purple-800 hover:border-purple-400" },
-    { label: t("home_birds"), value: "BIRD", emoji: "🦜", color: "bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 hover:border-green-400" },
-    { label: t("home_rabbits"), value: "RABBIT", emoji: "🐇", color: "bg-pink-50 dark:bg-pink-900/20 border-pink-200 dark:border-pink-800 hover:border-pink-400" },
-    { label: t("home_fish"), value: "FISH", emoji: "🐟", color: "bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 hover:border-blue-400" },
-    { label: t("home_rodents"), value: "RODENT", emoji: "🐹", color: "bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-800 hover:border-orange-400" },
-    { label: t("home_reptiles"), value: "REPTILE", emoji: "🐍", color: "bg-lime-50 dark:bg-lime-900/20 border-lime-200 dark:border-lime-800 hover:border-lime-400" },
-    { label: t("home_exotic"), value: "EXOTIC", emoji: "🦎", color: "bg-teal-50 dark:bg-teal-900/20 border-teal-200 dark:border-teal-800 hover:border-teal-400" },
+    { label: t("home_dogs"), value: "DOG", emoji: "🐕", color: "bg-amber-100 dark:bg-amber-900/20 border-amber-300 dark:border-amber-800 hover:border-amber-400" },
+    { label: t("home_cats"), value: "CAT", emoji: "🐈", color: "bg-purple-100 dark:bg-purple-900/20 border-purple-300 dark:border-purple-800 hover:border-purple-400" },
+    { label: t("home_birds"), value: "BIRD", emoji: "🦜", color: "bg-green-100 dark:bg-green-900/20 border-green-300 dark:border-green-800 hover:border-green-400" },
+    { label: t("home_rabbits"), value: "RABBIT", emoji: "🐇", color: "bg-pink-100 dark:bg-pink-900/20 border-pink-300 dark:border-pink-800 hover:border-pink-400" },
+    { label: t("home_fish"), value: "FISH", emoji: "🐟", color: "bg-blue-100 dark:bg-blue-900/20 border-blue-300 dark:border-blue-800 hover:border-blue-400" },
+    { label: t("home_rodents"), value: "RODENT", emoji: "🐹", color: "bg-orange-100 dark:bg-orange-900/20 border-orange-300 dark:border-orange-800 hover:border-orange-400" },
+    { label: t("home_reptiles"), value: "REPTILE", emoji: "🐍", color: "bg-lime-100 dark:bg-lime-900/20 border-lime-300 dark:border-lime-800 hover:border-lime-400" },
+    { label: t("home_exotic"), value: "EXOTIC", emoji: "🦎", color: "bg-teal-100 dark:bg-teal-900/20 border-teal-300 dark:border-teal-800 hover:border-teal-400" },
   ];
 
   const WHY_US = [

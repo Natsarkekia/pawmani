@@ -14,7 +14,7 @@ import { PetGridSkeleton } from "@/components/ui/Skeleton";
 import { BrowseProvider } from "@/components/browse/BrowseContext";
 import { ListingsGridWrapper } from "@/components/browse/ListingsGridWrapper";
 import type { Prisma, Species, Gender, VaccinationStatus, ListingPurpose } from "@prisma/client";
-import type { Locale } from "@/lib/i18n";
+import type { Locale, TranslationKey } from "@/lib/i18n";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Browse Pets" };
@@ -195,13 +195,22 @@ export default async function BrowsePage({ searchParams }: { searchParams: Searc
   };
   const speciesLabel = params.species ? SPECIES_LABELS[params.species] ?? params.species : "";
 
+  const withSpecies = (adjKey: TranslationKey) =>
+    locale === "ka"
+      ? `${t(adjKey)} ${speciesLabel}`
+      : `${speciesLabel} ${t(adjKey)}`;
+
   const pageTitle = params.search
     ? `${t("browse_resultsFor")} "${params.search}"`
     : params.purpose === "BREEDING"
-    ? params.species ? `${speciesLabel} ${t("browse_forBreedingLabel")}` : t("browse_breedingMatches")
+    ? params.species ? withSpecies("browse_forBreedingLabel") : t("browse_breedingMatches")
     : params.purpose === "ADOPT"
-    ? params.species ? `${speciesLabel} ${t("browse_forAdoptLabel")}` : t("browse_forAdopt")
-    : params.species ? `${speciesLabel} ${t("browse_forSaleLabel")}` : t("browse_browseAll");
+    ? params.species ? withSpecies("browse_forAdoptLabel") : t("browse_forAdopt")
+    : params.purpose === "SALE"
+    ? params.species ? withSpecies("browse_forSaleLabel") : t("browse_forSale")
+    : params.species
+    ? (locale === "ka" ? speciesLabel : `${t("browse_all")} ${speciesLabel}`)
+    : t("browse_browseAll");
 
   return (
     <BrowseProvider>

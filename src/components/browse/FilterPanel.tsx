@@ -162,14 +162,14 @@ export function FilterPanel({ onClose }: Props) {
           <div className="relative flex-1">
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">₾</span>
             <input type="number" placeholder={t("browse_min")} defaultValue={get("minPrice")} onBlur={(e) => set("minPrice", e.target.value)}
-              className="w-full pl-7 pr-3 py-2 text-sm border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+              className="w-full pl-7 pr-3 py-2 text-sm border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
             />
           </div>
           <span className="text-gray-400 text-sm">{t("browse_to")}</span>
           <div className="relative flex-1">
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">₾</span>
             <input type="number" placeholder={t("browse_max")} defaultValue={get("maxPrice")} onBlur={(e) => set("maxPrice", e.target.value)}
-              className="w-full pl-7 pr-3 py-2 text-sm border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+              className="w-full pl-7 pr-3 py-2 text-sm border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
             />
           </div>
         </div>
@@ -178,12 +178,10 @@ export function FilterPanel({ onClose }: Props) {
       {/* Vaccination */}
       <div>
         <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t("browse_vaccination")}</p>
-        <div className="space-y-1.5">
+        <div className="flex flex-wrap gap-2">
           {VACCINATION.map((v) => (
-            <button key={v.value} onClick={() => set("vaccination", v.value)} className={cn("w-full text-left px-3 py-2 rounded-lg text-sm transition-all cursor-pointer",
-              get("vaccination") === v.value
-                ? "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 font-medium"
-                : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+            <button key={v.value} onClick={() => set("vaccination", v.value)} className={cn("px-3 py-1.5 rounded-full text-sm border transition-all cursor-pointer",
+              get("vaccination") === v.value ? activeChip : inactiveChip
             )}>
               {v.label}
             </button>
