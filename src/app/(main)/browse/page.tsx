@@ -17,7 +17,10 @@ import type { Prisma, Species, Gender, VaccinationStatus, ListingPurpose } from 
 import type { Locale, TranslationKey } from "@/lib/i18n";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Browse Pets" };
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getT();
+  return { title: t("meta_browse") };
+}
 
 type SearchParams = Promise<{
   species?: string;

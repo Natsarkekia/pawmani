@@ -2,7 +2,10 @@ import { PageHero } from "@/components/ui/PageHero";
 import { getT } from "@/lib/i18n/server";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Privacy Policy" };
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getT();
+  return { title: t("meta_privacy") };
+}
 
 export default async function PrivacyPage() {
   const { t } = await getT();

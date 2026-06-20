@@ -46,9 +46,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { id } = await params;
   const breeder = await getBreeder(id);
+  const { t } = await getT();
   if (!breeder) return { title: "Breeder Not Found" };
   return {
-    title: `${breeder.user.name} — Breeder Profile`,
+    title: `${breeder.user.name} — ${t("meta_breederProfile")}`,
     description: breeder.bio ?? `View listings and reviews for ${breeder.user.name} on Pawmani.`,
   };
 }

@@ -457,6 +457,19 @@ export const en = {
   bp_ratingGood: "Good",
   bp_ratingGreat: "Great",
   bp_ratingExcellent: "Excellent",
+
+  // Page metadata titles
+  meta_siteName: "Pawmani",
+  meta_browse: "Browse Pets",
+  meta_account: "My Account",
+  meta_editListing: "Edit Listing",
+  meta_faq: "FAQ",
+  meta_favourites: "My Favourites",
+  meta_messages: "Messages",
+  meta_privacy: "Privacy Policy",
+  meta_terms: "Terms of Service",
+  meta_about: "About Us",
+  meta_breederProfile: "Breeder Profile",
 } as const;
 
 export type TranslationKey = keyof typeof en;
@@ -918,6 +931,19 @@ export const ka: Record<TranslationKey, string> = {
   bp_ratingGood: "კარგი",
   bp_ratingGreat: "ძალიან კარგი",
   bp_ratingExcellent: "შესანიშნავი",
+
+  // Page metadata titles
+  meta_siteName: "ფაუმანი",
+  meta_browse: "განცხადებები",
+  meta_account: "ჩემი ანგარიში",
+  meta_editListing: "განცხადების რედაქტირება",
+  meta_faq: "კითხვები",
+  meta_favourites: "ფავორიტები",
+  meta_messages: "შეტყობინებები",
+  meta_privacy: "კონფიდენციალურობის პოლიტიკა",
+  meta_terms: "მომსახურების პირობები",
+  meta_about: "ჩვენს შესახებ",
+  meta_breederProfile: "პროფილი",
 };
 
 export function createT(locale: Locale) {

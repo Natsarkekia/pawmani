@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
       ageUnit,
       gender,
       purpose,
-      price: purpose === "BREEDING" ? null : price ? Number(price) : null,
+      price: (purpose === "BREEDING" || purpose === "ADOPT") ? null : price ? Number(price) : null,
       vaccinationStatus,
       description,
       city,

@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { Navbar } from "@/components/layout/Navbar";
 import { ConditionalFooter } from "@/components/layout/ConditionalFooter";
 import { LanguageProvider } from "@/lib/i18n/client";
+import { TitleManager } from "@/components/layout/TitleManager";
 import type { Locale } from "@/lib/i18n";
 
 export default async function MainLayout({ children }: { children: React.ReactNode }) {
@@ -11,6 +12,7 @@ export default async function MainLayout({ children }: { children: React.ReactNo
 
   return (
     <LanguageProvider initialLocale={initialLocale}>
+      <TitleManager />
       <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-slate-900">
         <Navbar />
         <main className="flex-1">{children}</main>

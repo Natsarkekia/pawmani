@@ -2,9 +2,13 @@ import { notFound, redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { EditListingForm } from "./EditListingForm";
+import { getT } from "@/lib/i18n/server";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Edit Listing" };
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getT();
+  return { title: t("meta_editListing") };
+}
 
 export default async function EditListingPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;

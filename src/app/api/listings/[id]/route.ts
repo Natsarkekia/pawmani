@@ -45,7 +45,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
       title, species, breed,
       ageValue: Number(ageValue),
       ageUnit, gender, purpose,
-      price: purpose === "BREEDING" ? null : price ? Number(price) : null,
+      price: (purpose === "BREEDING" || purpose === "ADOPT") ? null : price ? Number(price) : null,
       description, vaccinationStatus, city,
       images: {
         create: (images as string[]).map((url: string, i: number) => ({

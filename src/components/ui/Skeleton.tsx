@@ -29,6 +29,113 @@ export function PetGridSkeleton({ count = 6 }: { count?: number }) {
   );
 }
 
+export function ListingFormSkeleton({ showPhone = false }: { showPhone?: boolean }) {
+  return (
+    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-10">
+      {/* Heading */}
+      <div className="mb-8 space-y-2">
+        <Skeleton className="h-7 w-36 rounded-md" />
+        <Skeleton className="h-4 w-56 rounded-md" />
+      </div>
+
+      <div className="space-y-8">
+        {/* Photos */}
+        <div>
+          <Skeleton className="h-4 w-14 mb-3 rounded-md" />
+          <div className="grid grid-cols-4 gap-3">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <Skeleton key={i} className="aspect-square rounded-xl" />
+            ))}
+          </div>
+        </div>
+
+        {/* Purpose chips */}
+        <div>
+          <Skeleton className="h-4 w-20 mb-3 rounded-md" />
+          <div className="flex gap-3">
+            <Skeleton className="h-9 w-20 rounded-full" />
+            <Skeleton className="h-9 w-24 rounded-full" />
+            <Skeleton className="h-9 w-20 rounded-full" />
+          </div>
+        </div>
+
+        {/* Species chips */}
+        <div>
+          <Skeleton className="h-4 w-16 mb-3 rounded-md" />
+          <div className="flex flex-wrap gap-2">
+            {["w-14", "w-12", "w-14", "w-16", "w-12", "w-16", "w-20", "w-16"].map((w, i) => (
+              <Skeleton key={i} className={`h-9 rounded-full ${w}`} />
+            ))}
+          </div>
+        </div>
+
+        {/* Title + Breed */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="space-y-1.5">
+            <Skeleton className="h-4 w-12 rounded-md" />
+            <Skeleton className="h-10 w-full rounded-xl" />
+          </div>
+          <div className="space-y-1.5">
+            <Skeleton className="h-4 w-10 rounded-md" />
+            <Skeleton className="h-10 w-full rounded-xl" />
+          </div>
+        </div>
+
+        {/* Age + Unit + Gender */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          <div className="space-y-1.5">
+            <Skeleton className="h-4 w-8 rounded-md" />
+            <Skeleton className="h-10 rounded-xl" />
+          </div>
+          <div className="space-y-1.5">
+            <Skeleton className="h-4 w-16 rounded-md" />
+            <Skeleton className="h-10 rounded-xl" />
+          </div>
+          <div className="col-span-2 sm:col-span-1 space-y-1.5">
+            <Skeleton className="h-4 w-14 rounded-md" />
+            <div className="flex gap-2">
+              <Skeleton className="h-9 w-16 rounded-full" />
+              <Skeleton className="h-9 w-20 rounded-full" />
+            </div>
+          </div>
+        </div>
+
+        {/* Vaccination */}
+        <div className="space-y-1.5">
+          <Skeleton className="h-4 w-32 rounded-md" />
+          <Skeleton className="h-10 w-full max-w-xs rounded-xl" />
+        </div>
+
+        {/* Description */}
+        <div className="space-y-1.5">
+          <Skeleton className="h-4 w-24 rounded-md" />
+          <Skeleton className="h-28 w-full rounded-xl" />
+        </div>
+
+        {/* Location */}
+        <div className="space-y-1.5">
+          <Skeleton className="h-4 w-10 rounded-md" />
+          <Skeleton className="h-10 w-full max-w-xs rounded-xl" />
+        </div>
+
+        {/* Phone (create only) */}
+        {showPhone && (
+          <div className="space-y-1.5">
+            <Skeleton className="h-4 w-20 rounded-md" />
+            <Skeleton className="h-10 w-full rounded-xl" />
+          </div>
+        )}
+
+        {/* Buttons */}
+        <div className="flex gap-3">
+          <Skeleton className="h-12 flex-1 rounded-xl" />
+          <Skeleton className="h-12 flex-1 rounded-xl" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function ConversationSkeleton() {
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col" style={{ height: "calc(100vh - 4rem)" }}>

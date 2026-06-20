@@ -7,7 +7,10 @@ import { PetCard } from "@/components/pets/PetCard";
 import { getT } from "@/lib/i18n/server";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "My Favourites" };
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getT();
+  return { title: t("meta_favourites") };
+}
 export const dynamic = "force-dynamic";
 
 export default async function FavoritesPage() {

@@ -54,9 +54,12 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const { id } = await params;
   const listing = await getListing(id);
   if (!listing) return { title: "Listing Not Found" };
+  const primaryImage = listing.images[0]?.url;
   return {
     title: listing.title,
     description: listing.description.slice(0, 160),
+    openGraph: primaryImage ? { images: [{ url: primaryImage, width: 1200, height: 630 }] } : undefined,
+    twitter: primaryImage ? { card: "summary_large_image", images: [primaryImage] } : undefined,
   };
 }
 

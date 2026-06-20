@@ -14,7 +14,10 @@ import { formatPrice } from "@/lib/utils";
 import { getT } from "@/lib/i18n/server";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "My Account" };
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getT();
+  return { title: t("meta_account") };
+}
 export const dynamic = "force-dynamic";
 
 export default async function AccountPage() {

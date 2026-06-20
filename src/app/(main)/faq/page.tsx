@@ -4,7 +4,10 @@ import { getT } from "@/lib/i18n/server";
 import Link from "next/link";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "FAQ", description: "Frequently asked questions about Pawmani." };
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getT();
+  return { title: t("meta_faq"), description: "Frequently asked questions about Pawmani." };
+}
 
 export default async function FaqPage() {
   const { t } = await getT();
