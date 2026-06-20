@@ -139,7 +139,7 @@ export function EditListingForm({ listing }: { listing: InitialListing }) {
               type="button"
               onClick={() => fileInputRef.current?.click()}
               disabled={uploading}
-              className="aspect-square rounded-xl border-2 border-dashed border-gray-200 hover:border-blue-400 flex flex-col items-center justify-center gap-1 text-gray-400 hover:text-blue-600 transition-colors disabled:opacity-50"
+              className="aspect-square rounded-xl border-2 border-dashed border-gray-200 hover:border-blue-400 flex flex-col items-center justify-center gap-1 text-gray-400 hover:text-blue-600 transition-colors disabled:opacity-50 cursor-pointer"
             >
               {uploading ? <Loader2 className="w-5 h-5 animate-spin" /> : <><Upload className="w-5 h-5" /><span className="text-xs">{t("form_addPhoto")}</span></>}
             </button>
@@ -191,9 +191,9 @@ export function EditListingForm({ listing }: { listing: InitialListing }) {
             className="w-full px-3.5 py-2.5 border border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:outline-none focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white" />
         </div>
         <div>
-          <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-1.5">&nbsp;</label>
+          <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-1.5">{t("form_ageUnit")}</label>
           <select value={form.ageUnit} onChange={(e) => set("ageUnit", e.target.value)}
-            className="w-full px-3.5 py-2.5 border border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:outline-none focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+            className="w-full px-3.5 py-2.5 border border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:outline-none focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white cursor-pointer">
             <option value="WEEKS">{t("form_weeks")}</option>
             <option value="MONTHS">{t("form_months")}</option>
             <option value="YEARS">{t("form_years")}</option>
@@ -225,7 +225,7 @@ export function EditListingForm({ listing }: { listing: InitialListing }) {
       <div>
         <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-1.5">{t("form_vaccinationStatus")} <span className="text-red-500">*</span></label>
         <select required value={form.vaccinationStatus} onChange={(e) => set("vaccinationStatus", e.target.value)}
-          className="w-full max-w-xs px-3.5 py-2.5 border border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:outline-none focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+          className="w-full max-w-xs px-3.5 py-2.5 border border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:outline-none focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white cursor-pointer">
           <option value="" disabled>{t("form_vaccinationStatus")}</option>
           <option value="FULL">{t("form_fullyVaccinated")}</option>
           <option value="PARTIAL">{t("form_partial")}</option>
@@ -245,7 +245,7 @@ export function EditListingForm({ listing }: { listing: InitialListing }) {
       <div>
         <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-1.5">{t("form_city")} <span className="text-red-500">*</span></label>
         <select required value={form.city} onChange={(e) => set("city", e.target.value)}
-          className="w-full max-w-xs px-3.5 py-2.5 border border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:outline-none focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+          className="w-full max-w-xs px-3.5 py-2.5 border border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:outline-none focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white cursor-pointer">
           <option value="" disabled>{t("form_selectCity")}</option>
           {GEORGIAN_CITIES.map((c) => (
             <option key={c} value={c}>{getCityName(c, locale)}</option>

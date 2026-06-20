@@ -122,7 +122,11 @@ export default async function AccountPage() {
                       )}
                     </div>
                     <p className="text-sm text-gray-500 mt-0.5">
-                      {formatPrice(listing.price, listing.purpose)} ·{" "}
+                      {listing.price != null
+                        ? formatPrice(listing.price)
+                        : listing.purpose === "BREEDING"
+                          ? t("card_breeding")
+                          : t("card_negotiable")} ·{" "}
                       <span className={listing.purpose === "BREEDING" ? "text-green-600" : "text-blue-600"}>
                         {listing.purpose === "BREEDING" ? t("account_breeding") : t("account_forSale")}
                       </span>

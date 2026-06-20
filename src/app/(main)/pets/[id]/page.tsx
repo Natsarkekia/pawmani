@@ -126,7 +126,13 @@ export default async function PetDetailPage({ params }: { params: Promise<{ id: 
       {/* Page heading */}
       <div className="mb-8">
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">{listing.title}</h1>
-        <p className="text-2xl font-bold text-blue-700 mt-1">{formatPrice(listing.price, listing.purpose)}</p>
+        <p className="text-2xl font-bold text-blue-700 mt-1">
+          {listing.price != null
+            ? formatPrice(listing.price)
+            : listing.purpose === "BREEDING"
+              ? t("card_breeding")
+              : t("card_negotiable")}
+        </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">

@@ -179,7 +179,7 @@ export default function CreateListingPage() {
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
                 disabled={uploading}
-                className="aspect-square rounded-xl border-2 border-dashed border-gray-200 hover:border-blue-400 flex flex-col items-center justify-center gap-1 text-gray-400 hover:text-blue-600 transition-colors disabled:opacity-50"
+                className="aspect-square rounded-xl border-2 border-dashed border-gray-200 hover:border-blue-400 flex flex-col items-center justify-center gap-1 text-gray-400 hover:text-blue-600 transition-colors disabled:opacity-50 cursor-pointer"
               >
                 {uploading ? (
                   <Loader2 className="w-5 h-5 animate-spin" />
@@ -275,11 +275,11 @@ export default function CreateListingPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-1.5">&nbsp;</label>
+            <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-1.5">{t("form_ageUnit")}</label>
             <select
               value={form.ageUnit}
               onChange={(e) => set("ageUnit", e.target.value)}
-              className="w-full px-3.5 py-2.5 border border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:outline-none focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+              className="w-full px-3.5 py-2.5 border border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:outline-none focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white cursor-pointer"
             >
               <option value="WEEKS">{t("form_weeks")}</option>
               <option value="MONTHS">{t("form_months")}</option>
@@ -326,7 +326,7 @@ export default function CreateListingPage() {
             required
             value={form.vaccinationStatus}
             onChange={(e) => set("vaccinationStatus", e.target.value)}
-            className="w-full max-w-xs px-3.5 py-2.5 border border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:outline-none focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+            className="w-full max-w-xs px-3.5 py-2.5 border border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:outline-none focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white cursor-pointer"
           >
             <option value="" disabled>{t("form_vaccinationStatus")}</option>
             <option value="FULL">{t("form_fullyVaccinated")}</option>
@@ -361,7 +361,7 @@ export default function CreateListingPage() {
             required
             value={form.city}
             onChange={(e) => set("city", e.target.value)}
-            className="w-full max-w-xs px-3.5 py-2.5 border border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:outline-none focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+            className="w-full max-w-xs px-3.5 py-2.5 border border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:outline-none focus:border-blue-400 bg-white dark:bg-gray-800 text-gray-900 dark:text-white cursor-pointer"
           >
             <option value="" disabled>{t("form_selectCity")}</option>
             {GEORGIAN_CITIES.map((c) => (
@@ -402,7 +402,7 @@ export default function CreateListingPage() {
         <button
           type="submit"
           disabled={submitting || uploading}
-          className="w-full bg-blue-700 text-white font-semibold py-3 rounded-xl hover:bg-blue-800 transition-colors disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="w-full bg-blue-700 text-white font-semibold py-3 rounded-xl hover:bg-blue-800 transition-colors disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
         >
           {submitting ? (
             <Loader2 className="w-4 h-4 animate-spin" />

@@ -117,6 +117,7 @@ export const en = {
   card_male: "male",
   card_female: "female",
   card_breeding: "Breeding",
+  card_negotiable: "Negotiable",
 
   // Age units
   age_week: "week",
@@ -202,6 +203,7 @@ export const en = {
   form_invalidPhone: "Enter a valid Georgian number — e.g. 5XX XXX XXX",
   form_phoneTip: "Shown to buyers who want to reach you.",
   form_age: "Age",
+  form_ageUnit: "Unit",
   form_weeks: "Weeks",
   form_months: "Months",
   form_years: "Years",
@@ -533,7 +535,7 @@ export const ka: Record<TranslationKey, string> = {
   browse_adjustFilters: "სცადეთ ფილტრების შეცვლა",
   browse_clearFilters: "ფილტრების გასუფთავება",
   browse_resultsFor: "შედეგები:",
-  browse_forSaleLabel: "გასახვისებლად",
+  browse_forSaleLabel: "სხვისდება",
   browse_forBreedingLabel: "შესაჯვარებლად",
   browse_breedingMatches: "შესაჯვარებელი განცხადებები",
   browse_browseAll: "ყველა ცხოველი",
@@ -564,6 +566,7 @@ export const ka: Record<TranslationKey, string> = {
   card_male: "ხვადი",
   card_female: "ძუ",
   card_breeding: "შესაჯვარებელი",
+  card_negotiable: "შეთანხმებით",
 
   // Age units
   age_week: "კვირა",
@@ -649,6 +652,7 @@ export const ka: Record<TranslationKey, string> = {
   form_invalidPhone: "შეიყვანეთ სწორი ქართული ნომერი — მაგ. 5XX XXX XXX",
   form_phoneTip: "საჯაროა ყველასთვის, ვინც განცხადებას ნახავს.",
   form_age: "ასაკი",
+  form_ageUnit: "ერთეული",
   form_weeks: "კვირა",
   form_months: "თვე",
   form_years: "წელი",
@@ -656,7 +660,7 @@ export const ka: Record<TranslationKey, string> = {
   form_male: "ხვადი",
   form_female: "ძუ",
   form_purpose: "მიზანი",
-  form_forSale: "გასახვისებლად",
+  form_forSale: "სხვისდება",
   form_forBreeding: "სანაშენედ",
   form_price: "ფასი (₾)",
   form_leaveBlank: "შეთანხმებისთვის შემთხვევაში დატოვეთ ცარიელი",
@@ -837,7 +841,7 @@ export const ka: Record<TranslationKey, string> = {
   account_edit: "რედაქტირება",
   account_hidden: "დამალული",
   account_breeding: "შესაჯვარებელი",
-  account_forSale: "გასახვისებლად",
+  account_forSale: "სხვისდება",
   account_publicProfile: "საჯარო პროფილი",
   account_new: "ახალი",
 

@@ -53,6 +53,11 @@ export function PetCard({
   const locale = localeProp ?? ctxLocale;
 
   const genderLabel = gender.toLowerCase() === "male" ? t("card_male") : t("card_female");
+  const priceLabel = price != null
+    ? formatPrice(price)
+    : purpose === "BREEDING"
+      ? t("card_breeding")
+      : t("card_negotiable");
 
   return (
     <div className="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5">
@@ -69,11 +74,6 @@ export function PetCard({
           <span className="bg-blue-700 text-white text-xs font-semibold px-2.5 py-1 rounded-full">
             {genderLabel}
           </span>
-          {purpose === "BREEDING" && (
-            <span className="bg-green-600 text-white text-xs font-semibold px-2.5 py-1 rounded-full">
-              {t("card_breeding")}
-            </span>
-          )}
         </div>
       </Link>
 
@@ -83,7 +83,7 @@ export function PetCard({
             <h3 className="font-semibold text-gray-900 dark:text-white truncate">{title}</h3>
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{breed} · {formatAge(ageValue, ageUnit, locale)}</p>
           </div>
-          <p className="text-blue-700 dark:text-blue-400 font-bold text-sm whitespace-nowrap shrink-0">{formatPrice(price, purpose)}</p>
+          <p className="text-blue-700 dark:text-blue-400 font-bold text-sm whitespace-nowrap shrink-0">{priceLabel}</p>
         </div>
         <div className="flex items-center gap-1 mt-3 text-xs text-gray-400 dark:text-gray-500">
           <MapPin className="w-3.5 h-3.5" />
