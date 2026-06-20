@@ -29,7 +29,7 @@ export default function Image() {
             Pawmani
           </div>
           <div style={{ fontSize: 30, color: "rgba(255,255,255,0.6)", letterSpacing: 3 }}>
-            Match · Breed · Adopt
+            Match · Buy · Adopt
           </div>
         </div>
       </div>
