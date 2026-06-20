@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { GEORGIAN_CITIES, getCityName } from "@/lib/cities";
@@ -16,11 +16,17 @@ export function FilterPanel({ onClose }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { t, locale } = useLang();
+  const [pending, setPending] = useState<Record<string, string>>({});
 
-  const get = (key: string) => searchParams.get(key) ?? "";
+  useEffect(() => {
+    setPending({});
+  }, [searchParams]);
+
+  const get = (key: string) => key in pending ? pending[key] : searchParams.get(key) ?? "";
 
   const set = useCallback(
     (key: string, value: string) => {
+      setPending(prev => ({ ...prev, [key]: value }));
       const params = new URLSearchParams(searchParams.toString());
       if (value) { params.set(key, value); } else { params.delete(key); }
       params.delete("page");
@@ -29,7 +35,10 @@ export function FilterPanel({ onClose }: Props) {
     [router, searchParams]
   );
 
-  const clearAll = () => router.replace("/browse");
+  const clearAll = () => {
+    setPending({});
+    router.replace("/browse");
+  };
 
   const hasFilters = ["species", "gender", "minPrice", "maxPrice", "vaccination", "purpose", "city"].some(
     (k) => searchParams.has(k)

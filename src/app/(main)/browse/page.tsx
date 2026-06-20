@@ -10,7 +10,9 @@ import { PawPrint } from "lucide-react";
 import { getT } from "@/lib/i18n/server";
 import { findGeorgianCity } from "@/lib/cities";
 import { BrowseSearchBar } from "@/components/browse/BrowseSearchBar";
+import { PetGridSkeleton } from "@/components/ui/Skeleton";
 import type { Prisma, Species, Gender, VaccinationStatus, ListingPurpose } from "@prisma/client";
+import type { Locale } from "@/lib/i18n";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Browse Pets" };
@@ -124,14 +126,65 @@ async function getFavoriteIds(userId: string | undefined) {
   return new Set(favs.map((f) => f.listingId));
 }
 
-export default async function BrowsePage({ searchParams }: { searchParams: SearchParams }) {
-  const params = await searchParams;
-  const [{ listings, total, page, totalPages }, session, { t, locale }] = await Promise.all([
+async function ListingsGrid({ params, locale }: { params: Awaited<SearchParams>; locale: Locale }) {
+  const [{ listings, total, page, totalPages }, session, { t }] = await Promise.all([
     getListings(params),
     auth(),
     getT(),
   ]);
   const favoriteIds = await getFavoriteIds(session?.user?.id);
+  const availableLabel = total === 1 ? t("browse_available") : t("browse_availablePlural");
+
+  if (listings.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center py-24 text-gray-400">
+        <PawPrint className="w-14 h-14 mb-4 opacity-20" />
+        <p className="font-semibold text-lg text-gray-500">{t("browse_noListings")}</p>
+        <p className="text-sm mt-1">{t("browse_adjustFilters")}</p>
+        <a href="/browse" className="mt-4 text-sm text-blue-700 hover:underline font-medium">
+          {t("browse_clearFilters")}
+        </a>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">{total} {availableLabel}</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+        {listings.map((listing) => (
+          <PetCard
+            key={listing.id}
+            id={listing.id}
+            title={listing.title}
+            breed={listing.breed}
+            species={listing.species}
+            ageValue={listing.ageValue}
+            ageUnit={listing.ageUnit}
+            gender={listing.gender}
+            price={listing.price}
+            city={listing.city}
+            imageUrl={listing.images[0]?.url ?? "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800&auto=format&fit=crop"}
+            isFavorited={favoriteIds.has(listing.id)}
+            purpose={listing.purpose}
+            locale={locale}
+          />
+        ))}
+      </div>
+      {totalPages > 1 && (
+        <div className="flex items-center justify-center gap-2 mt-10">
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+            <PaginationLink key={p} page={p} current={page} searchParams={params} />
+          ))}
+        </div>
+      )}
+    </>
+  );
+}
+
+export default async function BrowsePage({ searchParams }: { searchParams: SearchParams }) {
+  const params = await searchParams;
+  const { t, locale } = await getT();
 
   const SPECIES_LABELS: Record<string, string> = {
     DOG: t("browse_dogs"), CAT: t("browse_cats"), BIRD: t("browse_birds"),
@@ -147,8 +200,6 @@ export default async function BrowsePage({ searchParams }: { searchParams: Searc
     : params.purpose === "ADOPT"
     ? params.species ? `${speciesLabel} ${t("browse_forAdoptLabel")}` : t("browse_forAdopt")
     : params.species ? `${speciesLabel} ${t("browse_forSaleLabel")}` : t("browse_browseAll");
-
-  const availableLabel = total === 1 ? t("browse_available") : t("browse_availablePlural");
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -191,57 +242,10 @@ export default async function BrowsePage({ searchParams }: { searchParams: Searc
             </div>
           </div>
 
-          {/* Results grid */}
-          {listings.length > 0 ? (
-            <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
-                {listings.map((listing) => (
-                  <PetCard
-                    key={listing.id}
-                    id={listing.id}
-                    title={listing.title}
-                    breed={listing.breed}
-                    species={listing.species}
-                    ageValue={listing.ageValue}
-                    ageUnit={listing.ageUnit}
-                    gender={listing.gender}
-                    price={listing.price}
-                    city={listing.city}
-                    imageUrl={
-                      listing.images[0]?.url ??
-                      "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800&auto=format&fit=crop"
-                    }
-                    isFavorited={favoriteIds.has(listing.id)}
-                    purpose={listing.purpose}
-                    locale={locale}
-                  />
-                ))}
-              </div>
-
-              {/* Pagination */}
-              {totalPages > 1 && (
-                <div className="flex items-center justify-center gap-2 mt-10">
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-                    <PaginationLink
-                      key={p}
-                      page={p}
-                      current={page}
-                      searchParams={params}
-                    />
-                  ))}
-                </div>
-              )}
-            </>
-          ) : (
-            <div className="flex flex-col items-center justify-center py-24 text-gray-400">
-              <PawPrint className="w-14 h-14 mb-4 opacity-20" />
-              <p className="font-semibold text-lg text-gray-500">{t("browse_noListings")}</p>
-              <p className="text-sm mt-1">{t("browse_adjustFilters")}</p>
-              <a href="/browse" className="mt-4 text-sm text-blue-700 hover:underline font-medium">
-                {t("browse_clearFilters")}
-              </a>
-            </div>
-          )}
+          {/* Results grid — suspends independently */}
+          <Suspense fallback={<PetGridSkeleton count={12} />}>
+            <ListingsGrid params={params} locale={locale} />
+          </Suspense>
         </div>
       </div>
     </div>
