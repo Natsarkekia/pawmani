@@ -153,7 +153,7 @@ export function Navbar() {
 
           {session && (
             <div className="border-t border-gray-100 dark:border-gray-800 mt-1 pt-3">
-              <Link href="/create" className="flex items-center gap-2 text-sm font-medium text-blue-700 py-2.5" onClick={() => setMobileOpen(false)}>
+              <Link href="/create" className="inline-flex items-center gap-1.5 bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-blue-800 transition-colors" onClick={() => setMobileOpen(false)}>
                 <Plus className="w-4 h-4" />
                 {t("nav_postPet")}
               </Link>
