@@ -175,7 +175,7 @@ export default async function PetDetailPage({ params }: { params: Promise<{ id: 
         {/* Right column — unified breeder + contact card */}
         <div className="lg:col-span-2">
           <div className="sticky top-24">
-            <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl shadow-sm p-6 space-y-5">
+            <div className="bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-800 rounded-2xl shadow p-6 space-y-5">
               {/* Breeder info */}
               <div>
                 <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">{t("pet_listedBy")}</p>

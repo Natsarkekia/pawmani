@@ -8,7 +8,7 @@ export function Skeleton({ className }: { className?: string }) {
 
 export function PetCardSkeleton() {
   return (
-    <div className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm">
+    <div className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-300 dark:border-gray-800 shadow">
       <Skeleton className="aspect-[4/3] rounded-none" />
       <div className="p-4 space-y-2">
         <Skeleton className="h-4 w-3/4" />

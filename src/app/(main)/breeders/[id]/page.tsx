@@ -223,7 +223,7 @@ export default async function BreederProfilePage({
                   {breeder.reviews.map((review) => (
                     <div
                       key={review.id}
-                      className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-5 shadow-sm"
+                      className="bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-800 rounded-2xl p-5 shadow-sm"
                     >
                       <div className="flex items-start gap-3">
                         {review.reviewer.image ? (
@@ -275,7 +275,7 @@ export default async function BreederProfilePage({
           <div className="lg:col-span-1">
             <div className="sticky top-24 space-y-4">
               {/* Rating breakdown */}
-              <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-6 shadow-sm">
+              <div className="bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-800 rounded-2xl p-6 shadow-sm">
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-4">{t("bp_ratingSummary")}</h3>
 
                 <div className="flex items-center gap-4 mb-5">
@@ -315,7 +315,7 @@ export default async function BreederProfilePage({
               </div>
 
               {/* Quick info */}
-              <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-6 shadow-sm space-y-3 text-sm text-gray-600 dark:text-gray-300">
+              <div className="bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-800 rounded-2xl p-6 shadow-sm space-y-3 text-sm text-gray-600 dark:text-gray-300">
                 <div className="flex items-center gap-2">
                   <MapPin className="w-4 h-4 text-blue-600 shrink-0" />
                   {getCityName(breeder.city, locale)}

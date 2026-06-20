@@ -11,7 +11,7 @@ export function FaqAccordion({ items }: Props) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <div className="divide-y divide-gray-100 dark:divide-gray-700 border border-gray-100 dark:border-gray-700 rounded-2xl overflow-hidden">
+    <div className="divide-y divide-gray-300 dark:divide-gray-700 border border-gray-300 dark:border-gray-700 rounded-2xl overflow-hidden">
       {items.map((item, i) => (
         <div key={i}>
           <button

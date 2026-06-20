@@ -54,7 +54,7 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className={`sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800 shadow-sm transition-transform duration-300 md:translate-y-0 ${navHidden ? "-translate-y-full" : "translate-y-0"}`}>
+    <header className={`sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-sm transition-transform duration-300 md:translate-y-0 ${navHidden ? "-translate-y-full" : "translate-y-0"}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Desktop layout */}
@@ -93,7 +93,7 @@ export function Navbar() {
                     <Avatar src={session.user?.image} name={session.user?.name} size={36} className="rounded-full border-2 border-gray-200 hover:border-blue-400 transition-colors" />
                   </button>
                   {userMenuOpen && (
-                    <div className="absolute right-0 mt-2 w-52 bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-100 dark:border-gray-800 py-1 z-50">
+                    <div className="absolute right-0 mt-2 w-52 bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-300 dark:border-gray-800 py-1 z-50">
                       <div className="px-4 py-2.5 border-b border-gray-100 dark:border-gray-800">
                         <p className="text-sm font-semibold text-gray-900 dark:text-white truncate">{session.user?.name}</p>
                         <p className="text-xs text-gray-400 truncate mt-0.5">{session.user?.email}</p>
@@ -135,7 +135,7 @@ export function Navbar() {
                 <Avatar src={session.user?.image} name={session.user?.name} size={34} className="rounded-full border-2 border-gray-200 hover:border-blue-400 transition-colors" />
               </button>
               {mobileUserOpen && (
-                <div className="absolute right-0 mt-2 w-52 bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-100 dark:border-gray-800 py-1 z-50">
+                <div className="absolute right-0 mt-2 w-52 bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-300 dark:border-gray-800 py-1 z-50">
                   <div className="px-4 py-2.5 border-b border-gray-100 dark:border-gray-800">
                     <p className="text-sm font-semibold text-gray-900 dark:text-white truncate">{session.user?.name}</p>
                     <p className="text-xs text-gray-400 truncate mt-0.5">{session.user?.email}</p>

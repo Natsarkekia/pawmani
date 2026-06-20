@@ -11,7 +11,7 @@ export default async function MainLayout({ children }: { children: React.ReactNo
 
   return (
     <LanguageProvider initialLocale={initialLocale}>
-      <div className="flex flex-col min-h-screen bg-white dark:bg-slate-900">
+      <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-slate-900">
         <Navbar />
         <main className="flex-1">{children}</main>
         <ConditionalFooter />

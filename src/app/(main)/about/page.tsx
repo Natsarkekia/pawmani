@@ -44,7 +44,7 @@ export default async function AboutPage() {
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white text-center mb-10">{t("about_valuesTitle")}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {VALUES.map((v) => (
-              <div key={v.title} className="bg-white dark:bg-gray-900 rounded-2xl p-6 border border-gray-100 dark:border-gray-800 shadow-sm">
+              <div key={v.title} className="bg-white dark:bg-gray-900 rounded-2xl p-6 border border-gray-300 dark:border-gray-800 shadow">
                 <div className="w-12 h-12 bg-blue-50 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mb-4">
                   <v.icon className="w-6 h-6 text-blue-700 dark:text-blue-400" />
                 </div>

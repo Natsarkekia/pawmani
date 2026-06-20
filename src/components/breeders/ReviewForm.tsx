@@ -52,7 +52,7 @@ export function ReviewForm({ breederId, existing }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-5 shadow-sm space-y-4">
+    <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-800 rounded-2xl p-5 shadow space-y-4">
       <p className="font-semibold text-gray-900 dark:text-white text-sm">
         {existing ? t("bp_updateYourReview") : t("bp_leaveReview")}
       </p>

@@ -40,7 +40,7 @@ export default async function AccountPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       {/* Profile card */}
-      <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl shadow-sm p-6 flex items-center gap-5">
+      <div className="bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-800 rounded-2xl shadow p-6 flex items-center gap-5">
         <Avatar
           src={user.image}
           name={user.name}
@@ -58,7 +58,7 @@ export default async function AccountPage() {
 
       {/* Listings */}
       {user.breederProfile ? (
-        <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl shadow-sm p-6">
+        <div className="bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-800 rounded-2xl shadow p-6">
           <div className="flex items-center justify-between mb-5">
             <div>
               <h2 className="font-semibold text-gray-900 dark:text-white flex items-center gap-2">
@@ -93,13 +93,14 @@ export default async function AccountPage() {
           </div>
 
           {user.breederProfile.listings.length > 0 ? (
-            <div className="space-y-3">
+            <div className="space-y-2">
               {user.breederProfile.listings.map((listing) => (
                 <div
                   key={listing.id}
-                  className={`flex items-center gap-4 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors ${listing.status === "ARCHIVED" ? "opacity-50" : ""}`}
+                  className={`relative flex items-center gap-4 p-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm hover:shadow transition-shadow ${listing.status === "ARCHIVED" ? "opacity-50" : ""}`}
                 >
-                  <Link href={`/pets/${listing.id}`} className="shrink-0">
+                  <Link href={`/pets/${listing.id}`} className="absolute inset-0 rounded-xl" />
+                  <div className="relative z-10 shrink-0">
                     <div className="w-16 h-16 rounded-xl overflow-hidden bg-gray-100">
                       {listing.images[0] && (
                         <Image
@@ -111,8 +112,8 @@ export default async function AccountPage() {
                         />
                       )}
                     </div>
-                  </Link>
-                  <Link href={`/pets/${listing.id}`} className="flex-1 min-w-0 hidden sm:block">
+                  </div>
+                  <div className="relative z-10 flex-1 min-w-0 hidden sm:block">
                     <div className="flex items-center gap-2">
                       <p className="font-medium text-gray-900 dark:text-white truncate">{listing.title}</p>
                       {listing.status === "ARCHIVED" && (
@@ -136,8 +137,8 @@ export default async function AccountPage() {
                         {listing.viewCount}
                       </span>
                     </p>
-                  </Link>
-                  <div className="flex items-center gap-2 shrink-0">
+                  </div>
+                  <div className="relative z-10 flex items-center gap-2 shrink-0">
                     <HideListingButton id={listing.id} status={listing.status} />
                     <Link
                       href={`/edit/${listing.id}`}
@@ -159,7 +160,7 @@ export default async function AccountPage() {
           )}
         </div>
       ) : (
-        <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-6 text-center">
+        <div className="bg-white border border-gray-200 rounded-2xl shadow p-6 text-center">
           <PawPrint className="w-10 h-10 text-blue-200 mx-auto mb-3" />
           <p className="font-semibold text-gray-900 mb-1">{t("account_readyToPost")}</p>
           <p className="text-sm text-gray-500 mb-4">{t("account_createFirstListing")}</p>

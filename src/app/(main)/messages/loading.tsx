@@ -2,7 +2,7 @@ import { Skeleton } from "@/components/ui/Skeleton";
 
 function ConversationRowSkeleton() {
   return (
-    <div className="flex items-center gap-4 p-4 rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm">
+    <div className="flex items-center gap-4 p-4 rounded-2xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm">
       <Skeleton className="w-14 h-14 rounded-xl shrink-0" />
       <div className="flex-1 min-w-0 space-y-2">
         <div className="flex items-center justify-between gap-2">

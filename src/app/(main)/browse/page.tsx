@@ -228,7 +228,7 @@ export default async function BrowsePage({ searchParams }: { searchParams: Searc
       <div className="flex gap-8">
         {/* Desktop filter sidebar */}
         <aside className="hidden lg:block w-64 shrink-0">
-          <div className="sticky top-24 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-5 shadow-sm">
+          <div className="sticky top-24 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-800 rounded-2xl p-5 shadow">
             <Suspense>
               <FilterPanel />
             </Suspense>

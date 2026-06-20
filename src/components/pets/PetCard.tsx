@@ -62,7 +62,7 @@ export function PetCard({
         : t("card_negotiable");
 
   return (
-    <div className="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5">
+    <div className="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-300 dark:border-gray-800 shadow hover:shadow-md transition-all duration-200 hover:-translate-y-0.5">
       <Link href={`/pets/${id}`} className="block relative aspect-[4/3] overflow-hidden bg-gray-100">
         <Image
           src={imageUrl}

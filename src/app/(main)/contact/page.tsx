@@ -93,7 +93,7 @@ export default function ContactPage() {
           </div>
 
           {/* Form */}
-          <div className="lg:col-span-2 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl shadow-sm p-8">
+          <div className="lg:col-span-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-800 rounded-2xl shadow p-8">
             <div className="space-y-5">
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">{t("contact_name")}</label>

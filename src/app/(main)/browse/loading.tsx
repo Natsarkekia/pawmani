@@ -9,7 +9,7 @@ export default function BrowseLoading() {
       </div>
       <div className="flex gap-8">
         <aside className="hidden lg:block w-64 shrink-0">
-          <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-5 shadow-sm space-y-4">
+          <div className="bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-800 rounded-2xl p-5 shadow space-y-4">
             <Skeleton className="h-5 w-20" />
             <div className="flex flex-wrap gap-2">
               {Array.from({ length: 5 }).map((_, i) => <Skeleton key={i} className="h-8 w-16" />)}

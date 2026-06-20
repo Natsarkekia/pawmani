@@ -69,7 +69,7 @@ export default async function MessagesPage() {
               <Link
                 key={conv.id}
                 href={`/messages/${conv.id}`}
-                className="flex items-center gap-4 p-4 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 hover:bg-blue-50/40 dark:hover:bg-blue-900/10 transition-all bg-white dark:bg-gray-800 shadow-sm"
+                className="flex items-center gap-4 p-4 rounded-2xl border border-gray-300 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 hover:bg-blue-50/40 dark:hover:bg-blue-900/10 transition-all bg-white dark:bg-gray-800 shadow-sm"
               >
                 <Avatar src={otherParty.image} name={otherParty.name} size={56} className="rounded-xl shrink-0" />
 
