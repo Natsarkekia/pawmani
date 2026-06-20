@@ -554,7 +554,7 @@ export const ka: Record<TranslationKey, string> = {
   browse_noListings: "განცხადებები ვერ მოიძებნა",
   browse_adjustFilters: "სცადეთ ფილტრების შეცვლა",
   browse_clearFilters: "ფილტრების გასუფთავება",
-  browse_resultsFor: "შედეგები:",
+  browse_resultsFor: "შედეგი ფრაზისთვის:",
   browse_forSaleLabel: "სხვისდება",
   browse_forBreedingLabel: "შესაჯვარებლად",
   browse_forAdoptLabel: "აიყვანე",

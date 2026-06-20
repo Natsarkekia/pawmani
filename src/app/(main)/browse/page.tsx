@@ -208,16 +208,12 @@ export default async function BrowsePage({ searchParams }: { searchParams: Searc
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Page header */}
       <div className="mb-6">
-        {params.search ? (
-          <>
-            <p className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{t("browse_resultsFor")}</p>
-            <Suspense>
-              <BrowseSearchBar initialValue={params.search} />
-            </Suspense>
-          </>
-        ) : (
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{pageTitle}</h1>
-        )}
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+          {params.search ? t("browse_resultsFor") : pageTitle}
+        </h1>
+        <Suspense>
+          <BrowseSearchBar initialValue={params.search ?? ""} />
+        </Suspense>
       </div>
 
       <div className="flex gap-8">
