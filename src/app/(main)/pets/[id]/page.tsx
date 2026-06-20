@@ -10,6 +10,7 @@ import { PetCard } from "@/components/pets/PetCard";
 import { formatPrice } from "@/lib/utils";
 import { getCityName } from "@/lib/cities";
 import { Avatar } from "@/components/ui/Avatar";
+import { ViewTracker } from "@/components/pets/ViewTracker";
 import { getT } from "@/lib/i18n/server";
 import type { Locale, TranslationKey } from "@/lib/i18n";
 import type { Metadata } from "next";
@@ -110,6 +111,7 @@ export default async function PetDetailPage({ params }: { params: Promise<{ id: 
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <ViewTracker id={listing.id} />
       {/* Breadcrumb */}
       <nav className="flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400 mb-6">
         <Link href="/" className="hover:text-blue-700">{t("nav_home")}</Link>

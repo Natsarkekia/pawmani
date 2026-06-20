@@ -56,7 +56,7 @@ export default async function MessagesPage() {
           <p className="text-sm mt-1">When you contact a breeder, your conversations will appear here.</p>
         </div>
       ) : (
-        <div className="space-y-2">
+        <div className="space-y-2.5">
           {conversations.map((conv, i) => {
             const isUserBuyer = conv.buyerId === session.user.id;
             const otherParty = isUserBuyer
@@ -69,7 +69,7 @@ export default async function MessagesPage() {
               <Link
                 key={conv.id}
                 href={`/messages/${conv.id}`}
-                className="flex items-center gap-4 p-4 rounded-2xl border border-gray-100 dark:border-gray-800 hover:border-blue-200 dark:hover:border-blue-700 hover:bg-blue-50/30 dark:hover:bg-blue-900/10 transition-all bg-white dark:bg-gray-900"
+                className="flex items-center gap-4 p-4 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 hover:bg-blue-50/40 dark:hover:bg-blue-900/10 transition-all bg-white dark:bg-gray-800 shadow-sm"
               >
                 <Avatar src={otherParty.image} name={otherParty.name} size={56} className="rounded-xl shrink-0" />
 

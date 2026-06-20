@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Send, Loader2 } from "lucide-react";
 import { Avatar } from "@/components/ui/Avatar";
+import { ConversationSkeleton } from "@/components/ui/Skeleton";
 import { useLang } from "@/lib/i18n/client";
 
 type Message = {
@@ -60,11 +61,7 @@ export default function ConversationPage({ params }: { params: Promise<{ id: str
   }, [data?.messages.length]);
 
   if (status === "loading" || loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <Loader2 className="w-6 h-6 animate-spin text-blue-600" />
-      </div>
-    );
+    return <ConversationSkeleton />;
   }
 
   if (!session) {

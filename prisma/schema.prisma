@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 // ─── NextAuth required models ─────────────────────────────────────────────────
@@ -101,6 +102,7 @@ model Listing {
   vaccinationStatus VaccinationStatus @default(NONE)
   purpose           ListingPurpose    @default(SALE)
   city              String            @default("")
+  viewCount         Int               @default(0)
   createdAt         DateTime          @default(now())
   updatedAt         DateTime          @updatedAt
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Avatar } from "@/components/ui/Avatar";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { PawPrint, Star, Plus } from "lucide-react";
+import { PawPrint, Star, Plus, Eye } from "lucide-react";
 import { DeleteListingButton } from "@/components/account/DeleteListingButton";
 import { HideListingButton } from "@/components/account/HideListingButton";
 import { PhoneEditor } from "@/components/account/PhoneEditor";
@@ -121,16 +121,19 @@ export default async function AccountPage() {
                         </span>
                       )}
                     </div>
-                    <p className="text-sm text-gray-500 mt-0.5">
-                      {listing.price != null
-                        ? formatPrice(listing.price)
-                        : listing.purpose === "BREEDING"
-                          ? t("card_breeding")
-                          : listing.purpose === "ADOPT"
-                            ? t("card_adopt")
-                            : t("card_negotiable")} ·{" "}
-                      <span className={listing.purpose === "BREEDING" ? "text-green-600" : listing.purpose === "ADOPT" ? "text-purple-600" : "text-blue-600"}>
-                        {listing.purpose === "BREEDING" ? t("account_breeding") : listing.purpose === "ADOPT" ? t("account_forAdopt") : t("account_forSale")}
+                    <p className="text-sm text-gray-500 mt-0.5 flex items-center gap-2 flex-wrap">
+                      <span>
+                        {listing.price != null
+                          ? formatPrice(listing.price)
+                          : listing.purpose === "BREEDING"
+                            ? t("card_breeding")
+                            : listing.purpose === "ADOPT"
+                              ? t("card_adopt")
+                              : t("card_negotiable")}
+                      </span>
+                      <span className="flex items-center gap-1 text-gray-400">
+                        <Eye className="w-3.5 h-3.5" />
+                        {listing.viewCount}
                       </span>
                     </p>
                   </Link>
