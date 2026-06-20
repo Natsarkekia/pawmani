@@ -11,6 +11,8 @@ import { getT } from "@/lib/i18n/server";
 import { findGeorgianCity } from "@/lib/cities";
 import { BrowseSearchBar } from "@/components/browse/BrowseSearchBar";
 import { PetGridSkeleton } from "@/components/ui/Skeleton";
+import { BrowseProvider } from "@/components/browse/BrowseContext";
+import { ListingsGridWrapper } from "@/components/browse/ListingsGridWrapper";
 import type { Prisma, Species, Gender, VaccinationStatus, ListingPurpose } from "@prisma/client";
 import type { Locale } from "@/lib/i18n";
 import type { Metadata } from "next";
@@ -202,6 +204,7 @@ export default async function BrowsePage({ searchParams }: { searchParams: Searc
     : params.species ? `${speciesLabel} ${t("browse_forSaleLabel")}` : t("browse_browseAll");
 
   return (
+    <BrowseProvider>
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Page header */}
       <div className="mb-6">
@@ -242,12 +245,15 @@ export default async function BrowsePage({ searchParams }: { searchParams: Searc
             </div>
           </div>
 
-          {/* Results grid — suspends independently */}
-          <Suspense fallback={<PetGridSkeleton count={12} />}>
-            <ListingsGrid params={params} locale={locale} />
-          </Suspense>
+          {/* Results grid — suspends on initial load, shows skeleton on filter change */}
+          <ListingsGridWrapper>
+            <Suspense fallback={<PetGridSkeleton count={12} />}>
+              <ListingsGrid params={params} locale={locale} />
+            </Suspense>
+          </ListingsGridWrapper>
         </div>
       </div>
     </div>
+    </BrowseProvider>
   );
 }

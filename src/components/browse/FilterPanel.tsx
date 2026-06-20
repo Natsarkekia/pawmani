@@ -6,6 +6,7 @@ import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { GEORGIAN_CITIES, getCityName } from "@/lib/cities";
 import { useLang } from "@/lib/i18n/client";
+import { useBrowse } from "./BrowseContext";
 
 const inactiveChip = "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-blue-300";
 const activeChip = "bg-blue-700 text-white border-blue-700";
@@ -16,6 +17,7 @@ export function FilterPanel({ onClose }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { t, locale } = useLang();
+  const { startFilterTransition } = useBrowse();
   const [pending, setPending] = useState<Record<string, string>>({});
 
   useEffect(() => {
@@ -27,12 +29,14 @@ export function FilterPanel({ onClose }: Props) {
   const set = useCallback(
     (key: string, value: string) => {
       setPending(prev => ({ ...prev, [key]: value }));
-      const params = new URLSearchParams(searchParams.toString());
-      if (value) { params.set(key, value); } else { params.delete(key); }
-      params.delete("page");
-      router.replace(`/browse?${params.toString()}`);
+      startFilterTransition(() => {
+        const params = new URLSearchParams(searchParams.toString());
+        if (value) { params.set(key, value); } else { params.delete(key); }
+        params.delete("page");
+        router.replace(`/browse?${params.toString()}`);
+      });
     },
-    [router, searchParams]
+    [router, searchParams, startFilterTransition]
   );
 
   const clearAll = () => {
