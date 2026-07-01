@@ -146,7 +146,7 @@ model Conversation {
 
   listing  Listing        @relation(fields: [listingId], references: [id], onDelete: Cascade)
   buyer    User           @relation("BuyerConversations", fields: [buyerId], references: [id], onDelete: Cascade)
-  breeder  BreederProfile @relation("BreederConversations", fields: [breederId], references: [id])
+  breeder  BreederProfile @relation("BreederConversations", fields: [breederId], references: [id], onDelete: Cascade)
   messages Message[]
 
   @@unique([listingId, buyerId])
