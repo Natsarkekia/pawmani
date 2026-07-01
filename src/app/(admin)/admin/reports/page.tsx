@@ -18,11 +18,23 @@ export default async function ReportsPage() {
     .filter((r) => r.targetType === "LISTING")
     .map((r) => r.targetId);
 
-  const existingListings = await db.listing.findMany({
-    where: { id: { in: listingReportIds } },
-    select: { id: true },
-  });
+  const breederReportIds = reports
+    .filter((r) => r.targetType === "BREEDER")
+    .map((r) => r.targetId);
+
+  const [existingListings, reportedBreeders] = await Promise.all([
+    db.listing.findMany({
+      where: { id: { in: listingReportIds } },
+      select: { id: true },
+    }),
+    db.breederProfile.findMany({
+      where: { id: { in: breederReportIds } },
+      select: { id: true, user: { select: { email: true } } },
+    }),
+  ]);
+
   const existingListingIds = new Set(existingListings.map((l) => l.id));
+  const breederEmailMap = new Map(reportedBreeders.map((b) => [b.id, b.user.email]));
 
   const open = reports.filter((r) => r.status === "OPEN");
   const rest = reports.filter((r) => r.status !== "OPEN");
@@ -59,6 +71,7 @@ export default async function ReportsPage() {
                   adminNote: r.adminNote,
                   createdAt: r.createdAt,
                   reporterName: r.reporter.name ?? r.reporter.email ?? "Unknown",
+                  reportedEmail: r.targetType === "BREEDER" ? (breederEmailMap.get(r.targetId) ?? null) : null,
                 }}
               />
             ))}
@@ -83,6 +96,7 @@ export default async function ReportsPage() {
                   adminNote: r.adminNote,
                   createdAt: r.createdAt,
                   reporterName: r.reporter.name ?? r.reporter.email ?? "Unknown",
+                  reportedEmail: r.targetType === "BREEDER" ? (breederEmailMap.get(r.targetId) ?? null) : null,
                 }}
               />
             ))}

@@ -13,6 +13,7 @@ type Report = {
   adminNote: string | null;
   createdAt: Date;
   reporterName: string;
+  reportedEmail?: string | null;
 };
 
 const statusBadge: Record<string, string> = {
@@ -41,7 +42,7 @@ export function ReportCard({ report: initial, listingExists }: { report: Report;
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [deleting, setDeleting] = useState(false);
-  const [deleted, setDeleted] = useState(!listingExists);
+  const [deleted, setDeleted] = useState(initial.targetType === "LISTING" && !listingExists);
 
   const save = async (newStatus?: string) => {
     const s = newStatus ?? status;
@@ -97,6 +98,9 @@ export function ReportCard({ report: initial, listingExists }: { report: Report;
 
       <p className="mt-3 text-gray-300 text-sm">{initial.reason}</p>
       <p className="mt-1 text-xs text-gray-600">Reported by {initial.reporterName}</p>
+      {initial.reportedEmail && (
+        <p className="mt-0.5 text-xs text-gray-600">Reported user: <span className="text-gray-400">{initial.reportedEmail}</span></p>
+      )}
 
       {deleted && (
         <p className="mt-2 text-xs text-green-400">Listing deleted.</p>
