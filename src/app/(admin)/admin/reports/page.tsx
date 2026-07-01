@@ -14,6 +14,16 @@ export default async function ReportsPage() {
     },
   });
 
+  const listingReportIds = reports
+    .filter((r) => r.targetType === "LISTING")
+    .map((r) => r.targetId);
+
+  const existingListings = await db.listing.findMany({
+    where: { id: { in: listingReportIds } },
+    select: { id: true },
+  });
+  const existingListingIds = new Set(existingListings.map((l) => l.id));
+
   const open = reports.filter((r) => r.status === "OPEN");
   const rest = reports.filter((r) => r.status !== "OPEN");
 
@@ -39,6 +49,7 @@ export default async function ReportsPage() {
             {open.map((r) => (
               <ReportCard
                 key={r.id}
+                listingExists={r.targetType === "LISTING" ? existingListingIds.has(r.targetId) : false}
                 report={{
                   id: r.id,
                   targetType: r.targetType,
@@ -62,6 +73,7 @@ export default async function ReportsPage() {
             {rest.map((r) => (
               <ReportCard
                 key={r.id}
+                listingExists={r.targetType === "LISTING" ? existingListingIds.has(r.targetId) : false}
                 report={{
                   id: r.id,
                   targetType: r.targetType,

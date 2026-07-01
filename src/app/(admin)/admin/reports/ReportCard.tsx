@@ -35,13 +35,13 @@ function targetLink(type: string, id: string): string | null {
   return null;
 }
 
-export function ReportCard({ report: initial }: { report: Report }) {
+export function ReportCard({ report: initial, listingExists }: { report: Report; listingExists: boolean }) {
   const [status, setStatus] = useState(initial.status);
   const [note, setNote] = useState(initial.adminNote ?? "");
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [deleting, setDeleting] = useState(false);
-  const [deleted, setDeleted] = useState(false);
+  const [deleted, setDeleted] = useState(!listingExists);
 
   const save = async (newStatus?: string) => {
     const s = newStatus ?? status;
