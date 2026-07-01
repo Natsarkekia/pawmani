@@ -1,6 +1,8 @@
 import { db } from "@/lib/db";
 import { ListingTable } from "./ListingTable";
 
+export const dynamic = "force-dynamic";
+
 export default async function ListingsPage() {
   const listings = await db.listing.findMany({
     orderBy: { createdAt: "desc" },

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { rateLimit, getIp } from "@/lib/rate-limit";
@@ -37,6 +38,8 @@ export async function POST(req: NextRequest) {
       reason: fullReason,
     },
   });
+
+  revalidatePath("/admin/reports");
 
   return NextResponse.json({ ok: true });
 }

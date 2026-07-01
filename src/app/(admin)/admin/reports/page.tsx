@@ -1,6 +1,8 @@
 import { db } from "@/lib/db";
 import { ReportCard } from "./ReportCard";
 
+export const dynamic = "force-dynamic";
+
 export default async function ReportsPage() {
   const reports = await db.report.findMany({
     orderBy: [
