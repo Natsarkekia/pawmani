@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { supabaseAdmin } from "@/lib/supabase";
@@ -14,6 +15,11 @@ export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ 
   const images = await db.listingImage.findMany({ where: { listingId: id }, select: { url: true } });
 
   await db.listing.delete({ where: { id } });
+
+  revalidatePath("/");
+  revalidatePath("/browse");
+  revalidatePath(`/pets/${id}`);
+  revalidatePath("/admin/listings");
 
   if (images.length > 0) {
     const base = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/pet-images/`;

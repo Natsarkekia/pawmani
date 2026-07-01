@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { Search, ExternalLink, Trash2 } from "lucide-react";
@@ -30,6 +31,7 @@ const speciesBadge: Record<string, string> = {
 };
 
 export function ListingTable({ listings: initial }: { listings: Listing[] }) {
+  const router = useRouter();
   const [listings, setListings] = useState(initial);
   const [query, setQuery] = useState("");
   const [deleting, setDeleting] = useState<string | null>(null);
@@ -50,6 +52,7 @@ export function ListingTable({ listings: initial }: { listings: Listing[] }) {
     const res = await fetch(`/api/admin/listings/${id}`, { method: "DELETE" });
     if (res.ok) {
       setListings((prev) => prev.filter((l) => l.id !== id));
+      router.refresh();
     }
     setDeleting(null);
   };

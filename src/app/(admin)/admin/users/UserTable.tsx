@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Search, Loader2 } from "lucide-react";
+import { Search, Loader2, Trash2 } from "lucide-react";
 import { useSession } from "next-auth/react";
 
 type User = {
@@ -24,9 +25,11 @@ const roleBadge: Record<string, string> = {
 
 export function UserTable({ users: initial }: { users: User[] }) {
   const { data: session } = useSession();
+  const router = useRouter();
   const [users, setUsers] = useState(initial);
   const [query, setQuery] = useState("");
   const [saving, setSaving] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState<string | null>(null);
   const [pendingRole, setPendingRole] = useState<Record<string, string>>({});
 
   const filtered = users.filter((u) => {
@@ -57,6 +60,17 @@ export function UserTable({ users: initial }: { users: User[] }) {
     setSaving(null);
   };
 
+  const deleteUser = async (userId: string, name: string | null) => {
+    if (!confirm(`Delete "${name ?? "this user"}" permanently? This will remove all their listings and data.`)) return;
+    setDeleting(userId);
+    const res = await fetch(`/api/admin/users/${userId}`, { method: "DELETE" });
+    if (res.ok) {
+      setUsers((prev) => prev.filter((u) => u.id !== userId));
+      router.refresh();
+    }
+    setDeleting(null);
+  };
+
   return (
     <div>
       <div className="relative mb-4 max-w-sm">
@@ -77,6 +91,7 @@ export function UserTable({ users: initial }: { users: User[] }) {
               <th className="text-left px-4 py-3 text-gray-400 font-medium">Role</th>
               <th className="text-left px-4 py-3 text-gray-400 font-medium">Joined</th>
               <th className="text-left px-4 py-3 text-gray-400 font-medium">Change Role</th>
+              <th className="px-4 py-3" />
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-800">
@@ -137,12 +152,24 @@ export function UserTable({ users: initial }: { users: User[] }) {
                       </div>
                     )}
                   </td>
+                  <td className="px-4 py-3">
+                    {u.id !== session?.user?.id && (
+                      <button
+                        onClick={() => deleteUser(u.id, u.name)}
+                        disabled={deleting === u.id}
+                        className="p-1.5 text-gray-600 hover:text-red-400 transition-colors disabled:opacity-40"
+                        title="Delete user"
+                      >
+                        {deleting === u.id ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Trash2 className="w-3.5 h-3.5" />}
+                      </button>
+                    )}
+                  </td>
                 </tr>
               );
             })}
             {filtered.length === 0 && (
               <tr>
-                <td colSpan={4} className="px-4 py-10 text-center text-gray-600">No users found</td>
+                <td colSpan={5} className="px-4 py-10 text-center text-gray-600">No users found</td>
               </tr>
             )}
           </tbody>
